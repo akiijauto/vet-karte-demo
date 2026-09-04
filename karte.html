@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>カルテ｜電子カルテ 画面モック</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="mockbar">
+  <b>画面モック</b>　動くシステムではありません。データはすべて架空です。
+  <a href="index.html">← 説明ページへ戻る</a>
+</div>
+
+<div class="wrap">
+
+  <div class="app">
+    <div class="app-bar">
+      電子カルテシステム — カルテ
+      <span class="chip">モック / 架空データ</span>
+      <span class="right"><a href="list.html">外来一覧</a><a href="menu.html">メニュー</a></span>
+    </div>
+    <div class="app-body">
+
+      <p class="crumb"><a href="menu.html">メニュー</a><span>›</span><a href="list.html">外来一覧</a><span>›</span>カルテ 0871-1</p>
+
+      <table style="margin-bottom:14px">
+        <tr><th style="width:9em">カルテNo</th><td>0871-1</td><th style="width:7em">飼主</th><td>架空 太郎</td></tr>
+        <tr><th>動物名</th><td>クロ（雑種・猫・去勢済）</td><th>生年月日</th><td>2021-04-12（4歳）</td></tr>
+      </table>
+
+      <h3>本日のバイタル</h3>
+      <div class="vitals">
+        <div class="vital"><div class="k">体温</div><div class="v">38.6<small> ℃</small></div></div>
+        <div class="vital"><div class="k">体重</div><div class="v">4.20<small> kg</small></div></div>
+        <div class="vital"><div class="k">心拍</div><div class="v">128<small> /分</small></div></div>
+        <div class="vital"><div class="k">呼吸</div><div class="v">24<small> /分</small></div></div>
+      </div>
+
+      <h3>診察記録</h3>
+      <table>
+        <thead><tr><th style="width:8em">日付</th><th>所見</th><th>処置・投薬</th><th style="width:6em">担当</th></tr></thead>
+        <tbody>
+          <tr><td>2026-09-05</td>
+              <td>背部に軽度の発赤。掻痒あり。前回より範囲は縮小。</td>
+              <td>外用薬の継続。内服は本日分から半量へ。</td><td>獣医A</td></tr>
+          <tr><td>2026-08-21</td>
+              <td>背部から腰部にかけて発赤・脱毛。掻痒強い。</td>
+              <td>外用薬の処方。内服開始。2週間後に再診。</td><td>獣医A</td></tr>
+          <tr><td>2026-05-30</td>
+              <td>年次健診。異常所見なし。</td>
+              <td>ワクチン接種（3種混合）。</td><td>獣医B</td></tr>
+        </tbody>
+      </table>
+
+      <div class="btnrow">
+        <a class="btn" href="accounting.html">会計へ進む</a>
+        <a class="btn ghost" href="list.html">外来一覧へ戻る</a>
+      </div>
+
+      <div class="note">
+        <b>ここでAIに検証させたこと：</b>「バイタルの各値が、動物ごとに実際の記録から引かれていること」。<br>
+        <b>この検証で不具合が1件見つかりました。</b>
+        画面では正しい値が出るのに、<b>印刷したカルテは全患者が同じ体温</b>になっていたというものです
+        （<a href="index.html#findings">説明ページの①</a>）。<br>
+        このモックで動くのは画面間のリンクだけです。記録の追加・編集・印刷は実装前です。
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

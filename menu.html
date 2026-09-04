@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>メニュー｜電子カルテ 画面モック</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="mockbar">
+  <b>画面モック</b>　動くシステムではありません。データはすべて架空です。
+  <a href="index.html">← 説明ページへ戻る</a>
+</div>
+
+<div class="wrap">
+
+  <div class="app">
+    <div class="app-bar">
+      電子カルテシステム
+      <span class="chip">モック / 架空データ</span>
+      <span class="right"><a href="index.html">この取り組みについて</a></span>
+    </div>
+    <div class="app-body">
+
+      <p class="crumb">メニュー</p>
+
+      <a class="menu-primary" href="owner.html">
+        <span class="label">飼い主・動物画面
+          <span class="desc">飼い主とペットを探す・登録する</span>
+        </span>
+      </a>
+
+      <div class="menu-group">
+        <h3>日常業務</h3>
+        <ul class="menu-list">
+          <li><a href="list.html">外来</a></li>
+          <li><a href="#" class="is-planned" onclick="return false" title="この段階では実装前">入院</a></li>
+          <li><a href="#" class="is-planned" onclick="return false" title="この段階では実装前">DM管理</a></li>
+          <li><a href="#" class="is-planned" onclick="return false" title="この段階では実装前">売上集計</a></li>
+        </ul>
+      </div>
+
+      <div class="menu-group">
+        <h3>設定</h3>
+        <ul class="menu-list">
+          <li><a href="#" class="is-planned" onclick="return false" title="この段階では実装前">病院設定</a></li>
+          <li><a href="#" class="is-planned" onclick="return false" title="この段階では実装前">マスタメンテナンス</a></li>
+          <li><a href="#" class="is-planned" onclick="return false" title="この段階では実装前">CSVエクスポート</a></li>
+        </ul>
+      </div>
+
+      <div class="note">
+        <b>「実装前」と付いた項目は、この段階では作っていません。</b>
+        外来の一連の流れ（受付 → カルテ → 会計）を先に通し切ることを優先しています。
+        メニューに枠だけ置いてあるのは、<b>全体像のどこを作っているかが分かるようにする</b>ためです。
+      </div>
+
+    </div>
+  </div>
+
+  <p><a href="list.html">→ 外来一覧を見る</a></p>
+
+</div>
+</body>
+</html>
