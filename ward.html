@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>入院｜電子カルテ 画面モック</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="mockbar">
+  <b>画面モック</b>　動くのはページ間のリンクだけです。データはすべて架空です。
+  <a href="index.html">← この取り組みの説明へ</a>
+</div>
+
+<div class="shell">
+  <div class="shell-top">
+    <div class="brand"><div class="name">電子カルテ</div><div class="clinic">サンプル動物病院</div></div>
+    <a class="navbtn" href="list.html"><span class="t">本日の患者</span><span class="s">外来受付</span></a>
+    <a class="navbtn" href="owner.html"><span class="t">検索</span><span class="s">飼主・動物をさがす</span></a>
+    <span class="navbtn" style="color:var(--ink-faint)"><span class="t">新規飼主</span><span class="s">飼主・動物をあたらしく登録</span></span>
+    <span class="navbtn" style="color:var(--ink-faint)"><span class="t">設定</span><span class="s">病院設定ほか</span></span>
+    <span class="searchbox"><input value="飼主名・カナ・カルテNo・電話番号" readonly><span class="go">検索</span></span>
+    <a class="tool" href="sales.html">売上集計</a>
+    <span class="tool is-current">入院</span>
+    <span class="tool off">DM管理</span>
+    <span class="staff">担当<b>未設定</b></span>
+  </div>
+  <div class="shell-sub">
+    <span class="zoom"><span>−</span><span>100%</span><span>＋</span></span>
+    <span class="tool off">ログアウト</span>
+  </div>
+</div>
+
+<div class="bigtabs">
+  <a href="list.html">外来受付</a>
+  <a href="ward.html" class="is-current">入院</a>
+  <a class="off">ホテル</a>
+  <a class="off">手術</a>
+  <a class="off">トリミング</a>
+  <a class="off">備考・その他</a>
+</div>
+
+<div class="fnrow">
+  <div class="fngroup">
+    <button>体温入力</button>
+    <button>投薬実施</button>
+    <button>給餌記録</button>
+    <button>排泄記録</button>
+  </div>
+  <div class="fngroup">
+    <button>入院登録</button>
+    <button>ケージ移動</button>
+    <button>退院処理</button>
+    <span class="off">面会予約</span>
+  </div>
+  <div class="fngroup">
+    <a href="karte.html">カルテ</a>
+    <a href="accounting.html">会計</a>
+    <a href="list.html">外来一覧</a>
+    <a href="sales.html">売上集計</a>
+  </div>
+  <div class="fnnote">
+    在院 <b>9頭</b>　安定 5／要観察 3／重篤 1<br>
+    <span style="color:var(--ink-faint)">本日退院予定 1頭・本日入院 1頭</span>
+  </div>
+</div>
+
+<div class="picker">
+  <span class="field"><span class="lb">日付</span><span class="val">2026/9/5（土）</span></span>
+  <span class="lb">病棟</span>
+  <span class="radio on"><i></i>全体</span>
+  <span class="radio"><i></i>犬舎</span>
+  <span class="radio"><i></i>猫舎</span>
+  <span class="radio"><i></i>ICU</span>
+  <span class="lb">表示</span>
+  <span class="radio on"><i></i>在院中</span>
+  <span class="radio"><i></i>本日退院</span>
+  <span class="radio"><i></i>退院済を含む</span>
+  <span class="faint">「本日の体温・食欲・排泄」は、その日の最新の記録を表示しています</span>
+</div>
+
+<div class="gridwrap">
+<table class="grid">
+  <thead>
+    <tr>
+      <th>ケージ</th><th>カルテNo</th><th>動物名</th><th>飼主</th><th>入院日</th><th class="r">経過日数</th>
+      <th>担当</th><th>状態</th><th>本日の体温</th><th>食欲</th><th>排泄</th><th>点滴</th><th>備考</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>犬-1</td><td><a href="karte.html">1201-1</a></td><td>ハチ</td><td>架空 十四</td>
+      <td>2026-08-31</td><td class="r">6</td><td>獣医A</td><td>安定</td>
+      <td>38.4　<span class="faint">前日 38.5</span></td>
+      <td>全量　<span class="faint">前日 全量</span></td>
+      <td>便・尿あり　<span class="faint">前日 便・尿あり</span></td>
+      <td>なし</td><td>本日15時に退院予定</td>
+    </tr>
+    <tr class="warn">
+      <td>犬-2</td><td>1188-2</td><td>ごま</td><td>架空 十五</td>
+      <td>2026-09-03</td><td class="r">3</td><td>獣医A</td><td>要観察</td>
+      <td>39.2　<span class="faint">前日 38.9</span></td>
+      <td>半量　<span class="faint">前日 少量</span></td>
+      <td>軟便　<span class="faint">前日 軟便</span></td>
+      <td>維持液 40mL/h</td><td>術後3日目。創部にやや発赤</td>
+    </tr>
+    <tr>
+      <td>犬-3</td><td>1225-1</td><td>だいふく</td><td>架空 十六</td>
+      <td>2026-09-04</td><td class="r">2</td><td>獣医B</td><td>安定</td>
+      <td>38.7　<span class="faint">前日 38.8</span></td>
+      <td>全量　<span class="faint">前日 半量</span></td>
+      <td>便・尿あり　<span class="faint">前日 尿のみ</span></td>
+      <td>なし</td><td>左前肢骨折。ケージレスト継続</td>
+    </tr>
+    <tr>
+      <td>犬-4</td><td>1150-1</td><td>のぞみ</td><td>架空 十七</td>
+      <td>2026-08-30</td><td class="r">7</td><td>獣医B</td><td>安定</td>
+      <td>38.5　<span class="faint">前日 38.6</span></td>
+      <td>全量　<span class="faint">前日 全量</span></td>
+      <td>便・尿あり　<span class="faint">前日 便・尿あり</span></td>
+      <td>なし</td><td>9/7 に抜糸予定</td>
+    </tr>
+    <tr class="warn">
+      <td>猫-1</td><td>1207-1</td><td>みかん</td><td>架空 十八</td>
+      <td>2026-09-02</td><td class="r">4</td><td>獣医A</td><td>要観察</td>
+      <td>39.5　<span class="faint">前日 39.1</span></td>
+      <td>少量　<span class="faint">前日 半量</span></td>
+      <td>尿量減　<span class="faint">前日 尿あり</span></td>
+      <td>乳酸リンゲル 25mL/h</td><td>腎数値の再検を9/6に予定</td>
+    </tr>
+    <tr>
+      <td>猫-2</td><td>1233-1</td><td>とら</td><td>架空 十九</td>
+      <td>2026-09-05</td><td class="r">1</td><td>看護C</td><td>安定</td>
+      <td>38.3　<span class="faint">前日なし</span></td>
+      <td>全量　<span class="faint">前日なし</span></td>
+      <td>尿のみ　<span class="faint">前日なし</span></td>
+      <td>なし</td><td>避妊術後。本日10:40 入院</td>
+    </tr>
+    <tr>
+      <td>猫-3</td><td>1198-1</td><td>ちゃちゃ</td><td>架空 二十</td>
+      <td>2026-09-03</td><td class="r">3</td><td>獣医B</td><td>安定</td>
+      <td>38.6　<span class="faint">前日 38.8</span></td>
+      <td>半量　<span class="faint">前日 少量</span></td>
+      <td>便・尿あり　<span class="faint">前日 軟便</span></td>
+      <td>なし</td><td>食滞。経過良好</td>
+    </tr>
+    <tr class="warn">
+      <td>ICU-1</td><td>1241-1</td><td>さくら</td><td>架空 二十一</td>
+      <td>2026-09-04</td><td class="r">2</td><td>獣医A</td><td>重篤</td>
+      <td>37.1　<span class="faint">前日 37.6</span></td>
+      <td>摂取なし　<span class="faint">前日 摂取なし</span></td>
+      <td>尿のみ　<span class="faint">前日 尿のみ</span></td>
+      <td>維持液 15mL/h ＋ 昇圧薬</td><td>体温低下。見回りを1時間ごと</td>
+    </tr>
+    <tr class="warn">
+      <td>ICU-2</td><td>1176-1</td><td>こむぎ</td><td>架空 二十二</td>
+      <td>2026-09-01</td><td class="r">5</td><td>獣医B</td><td>要観察</td>
+      <td>39.8　<span class="faint">前日 39.5</span></td>
+      <td>少量　<span class="faint">前日 少量</span></td>
+      <td>下痢 2回　<span class="faint">前日 軟便 2回</span></td>
+      <td>乳酸リンゲル 30mL/h</td><td>発熱が続く。血液検査を再依頼</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="picker">
+  <span class="lb">選択中</span>
+  <span class="field"><span class="lb">ケージ</span><span class="val">ICU-2</span></span>
+  <span class="field"><span class="lb">カルテNo</span><span class="val">1176-1</span></span>
+  <span class="field"><span class="lb">動物名</span><span class="val">こむぎ</span></span>
+  <span class="field"><span class="lb">飼主</span><span class="val">架空 二十二</span></span>
+  <span class="field"><span class="lb">種・品種</span><span class="val">犬・柴</span></span>
+  <span class="field"><span class="lb">性別</span><span class="val">メス（避妊済）</span></span>
+  <span class="field"><span class="lb">入院日</span><span class="val">2026/9/1</span></span>
+  <span class="field"><span class="lb">経過</span><span class="val">5日目</span></span>
+  <span class="field"><span class="lb">主治医</span><span class="val">獣医B</span></span>
+  <a class="tool" href="karte.html">カルテを開く</a>
+</div>
+
+<div class="gridwrap">
+<table class="grid">
+  <thead>
+    <tr>
+      <th>日付</th><th class="r">体温</th><th class="r">体重</th><th>食欲</th><th>排泄</th>
+      <th>投薬</th><th>所見</th><th>記録者</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>2026-09-01（火）</td><td class="r">38.9</td><td class="r">11.20</td><td>少量</td><td>下痢 3回</td>
+        <td>抗菌薬・制吐薬</td><td>入院。脱水あり、輸液を 20mL/h で開始</td><td>獣医B</td></tr>
+    <tr><td>2026-09-02（水）</td><td class="r">39.4</td><td class="r">11.05</td><td>摂取なし</td><td>下痢 4回</td>
+        <td>抗菌薬・制吐薬・整腸薬</td><td>嘔吐 2回。輸液を 30mL/h へ変更</td><td>看護C</td></tr>
+    <tr><td>2026-09-03（木）</td><td class="r">39.6</td><td class="r">10.95</td><td>少量</td><td>下痢 3回</td>
+        <td>抗菌薬・制吐薬・整腸薬</td><td>発熱が続く。血液検査を追加で依頼</td><td>獣医B</td></tr>
+    <tr><td>2026-09-04（金）</td><td class="r">39.5</td><td class="r">10.90</td><td>少量</td><td>軟便 2回</td>
+        <td>抗菌薬・制吐薬・整腸薬</td><td>嘔吐なし。便性はやや改善</td><td>看護C</td></tr>
+    <tr><td>2026-09-05（土）</td><td class="r">39.8</td><td class="r">10.85</td><td>少量</td><td>下痢 2回</td>
+        <td>抗菌薬・制吐薬・整腸薬・解熱薬</td><td>体温が再上昇。血液検査の結果待ち</td><td>獣医B</td></tr>
+    <tr class="sum">
+      <td>5日間の推移</td><td class="r">38.9 → 39.8</td><td class="r">−0.35</td>
+      <td colspan="2">食欲・排泄は 5日とも記録あり（欠測 0日）</td>
+      <td colspan="2">投薬は 5日とも実施記録あり</td><td>記録者 未記入 0日</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="panels">
+
+  <div class="panel">
+    <div class="ptitle">本日の投薬スケジュール（ICU-2 こむぎ／2026-09-05）</div>
+    <div class="gridwrap">
+    <table class="grid">
+      <thead>
+        <tr><th>時刻</th><th>薬剤</th><th>量・経路</th><th>実施者</th><th>実施</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>06:00</td><td>乳酸リンゲル（維持）</td><td>30mL/h・静脈</td><td>看護C</td><td>済 06:05</td></tr>
+        <tr><td>08:00</td><td>抗菌薬</td><td>1.5mL・静脈</td><td>獣医B</td><td>済 08:10</td></tr>
+        <tr><td>08:00</td><td>制吐薬</td><td>0.6mL・皮下</td><td>看護C</td><td>済 08:12</td></tr>
+        <tr><td>10:00</td><td>整腸薬</td><td>1包・経口</td><td>看護C</td><td>済 10:04</td></tr>
+        <tr><td>12:00</td><td>抗菌薬</td><td>1.5mL・静脈</td><td>獣医B</td><td>済 12:05</td></tr>
+        <tr><td>14:00</td><td>解熱薬</td><td>0.8mL・静脈</td><td>獣医B</td><td>済 14:07</td></tr>
+        <tr><td>18:00</td><td>抗菌薬</td><td>1.5mL・静脈</td><td>予定 獣医B</td><td class="faint">未実施</td></tr>
+        <tr><td>20:00</td><td>制吐薬</td><td>0.6mL・皮下</td><td>予定 看護C</td><td class="faint">未実施</td></tr>
+        <tr><td>22:00</td><td>整腸薬</td><td>1包・経口</td><td>予定 看護C</td><td class="faint">未実施</td></tr>
+        <tr class="sum"><td colspan="3">実施済 6件／これからの予定 3件</td>
+            <td colspan="2">実施者が空の行 0件</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="pbody">
+      <span class="faint">実施済の行は実施した本人、これからの行は担当予定者を入れます。どちらも空欄にはできません。</span>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="ptitle">本日の給餌（ICU-2 こむぎ／2026-09-05）</div>
+    <div class="gridwrap">
+    <table class="grid">
+      <thead>
+        <tr><th>時刻</th><th>内容</th><th class="r">提供量</th><th class="r">摂取量</th><th>実施者</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>07:00</td><td>療法食（消化器・ウェット）</td><td class="r">20g</td><td class="r">5g</td><td>看護C</td></tr>
+        <tr><td>12:00</td><td>療法食（消化器・ウェット）</td><td class="r">20g</td><td class="r">9g</td><td>看護C</td></tr>
+        <tr><td>17:00</td><td>療法食（消化器・ウェット）</td><td class="r">20g</td><td class="r faint">未実施</td><td>予定 看護C</td></tr>
+        <tr class="sum"><td colspan="2">実施済 2回ぶんの合計</td><td class="r">40g</td><td class="r">14g</td>
+            <td>摂取率 35%</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="pbody">
+      <span class="field"><span class="lb">飲水</span><span class="val">自由飲水</span></span>
+      <span class="field"><span class="lb">絶食指示</span><span class="val empty">　</span></span>
+      <span class="faint">摂取量は提供量から食べ残しを引いて記録します（3回目は未実施のため合計に入れていません）</span>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="ptitle">本日の計測・見回り（ICU-2 こむぎ／2026-09-05）</div>
+    <div class="gridwrap">
+    <table class="grid">
+      <thead>
+        <tr><th>時刻</th><th class="r">体温</th><th class="r">心拍</th><th class="r">呼吸</th><th>記録者</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>06:00</td><td class="r">39.5</td><td class="r">132</td><td class="r">32</td><td>看護C</td></tr>
+        <tr><td>10:00</td><td class="r">39.6</td><td class="r">128</td><td class="r">30</td><td>獣医B</td></tr>
+        <tr class="warn"><td>14:00</td><td class="r">39.8</td><td class="r">126</td><td class="r">28</td><td>獣医B</td></tr>
+        <tr><td>18:00</td><td class="r faint">未計測</td><td class="r faint">未計測</td><td class="r faint">未計測</td><td>予定 看護C</td></tr>
+        <tr><td>22:00</td><td class="r faint">未計測</td><td class="r faint">未計測</td><td class="r faint">未計測</td><td>予定 獣医B</td></tr>
+        <tr class="sum"><td colspan="4">計測済 3回。最新は 14:00 の 39.8℃</td><td>記録者 未記入 0件</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="pbody">
+      <span class="faint">在院一覧の「本日の体温」には、この表の最新値がそのまま出ます。</span>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="ptitle">指示と申し送り</div>
+    <div class="pbody">
+      <span class="field"><span class="lb">主治医</span><span class="val">獣医B</span></span>
+      <span class="field"><span class="lb">指示日時</span><span class="val">2026/9/5 08:15</span></span>
+      <span class="field"><span class="lb">見回り間隔</span><span class="val">2時間</span></span>
+      <span class="field"><span class="lb">面会</span><span class="val">15:00〜16:00</span></span>
+      <span class="kbreak"></span>
+      <span class="lb">夜間の連絡</span>
+      <span class="radio on"><i></i>体温 40.0℃以上で連絡</span>
+      <span class="radio on"><i></i>嘔吐が再開したら連絡</span>
+      <span class="kbreak"></span>
+      <div class="memo">14:00 の解熱薬投与後、体温を 2時間ごとに 22:00 まで記録すること。
+輸液は 30mL/h を維持。尿量が 6時間で確認できない場合は当直へ申し送る。
+血液検査（CBC・生化学）の結果が届いたら、時刻と受領者を記録したうえで主治医へ連絡する。
+飼主へは本日 16:00 に電話で経過を伝える予定（前回連絡 9/4 17:20・獣医B）。</div>
+      <span class="faint">申し送りも投薬と同じく、書いた人と時刻が必ず一緒に残ります。</span>
+    </div>
+  </div>
+
+</div>
+
+<div class="actions">
+  <span class="keys">在院中の記録は、実施者と時刻をつけてから保存されます</span>
+  <button class="primary">記録を追加</button>
+  <button>退院処理</button>
+  <a href="karte.html">カルテへ</a>
+  <a href="list.html">外来一覧へ</a>
+  <a href="sales.html">売上集計へ</a>
+</div>
+
+<div class="note">
+  <b>ここでAIに検証させたこと：</b>「投薬の実施記録に、実施者が入っていない行が1つも無いこと」。
+  投薬・給餌・計測のいずれも、実施済の行に実施者が入っていることを条件にしました。<br>
+  <b>入院中の記録は「誰が・いつ・何をしたか」が必ず残る形にします。</b>
+  実施者の欄は空にできません。入院は日勤・夜勤で人が入れ替わり、
+  次の人は前の人の記録だけを頼りに動くためです。誰がやったか分からない投薬は、
+  やっていないのと同じ扱いをするほかありません。<br>
+  <b>体温・食欲・排泄は毎日必ず埋まる項目なので、前日の値を横に並べて見せます。</b>
+  一覧を見た時点で「昨日より上がった／食べる量が減った」が分かるようにするためです。
+  数字そのものより、<b>変化のほうが判断材料になります</b>。<br>
+  <b>退院しても記録は消しません。</b>論理削除のみとし、修正は履歴を残します。
+  診療記録は後から「無かったこと」にできてはいけないためです。
+  退院した動物は一覧から外れますが、データは残り、次に来院したときの経過として読めます。<br>
+  押せない機能はグレーで残しています。「無い」のか「この画面からは操作しない」のかを区別できるようにするためです。
+</div>
+
+</body>
+</html>

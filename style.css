@@ -1,113 +1,248 @@
-/* 動物病院向け電子カルテ 画面モック — 共通スタイル */
+/* 動物病院向け電子カルテ 画面モック — 共通スタイル
+ *
+ * 設計体系は「紙とインク」。紙カルテや帳票と見比べながら使う画面なので、
+ * 角丸・グラデーション・影は使わず、罫線と面の濃淡だけで構造を出す。
+ */
 :root{
-  --bg:#f5f6f8; --panel:#fff; --ink:#1a1d21; --muted:#6b7280; --line:#dfe3e8;
-  --accent:#1f5f8b; --accent-weak:#e8f0f7; --warn:#b45309; --warn-bg:#fff8e6;
-  --bad:#b3261e; --bad-bg:#fdecea; --ok:#1a7a3c; --ok-bg:#e8f6ed;
-  --radius:10px; color-scheme:light dark;
-}
-@media (prefers-color-scheme:dark){
-  :root{ --bg:#15171a; --panel:#1e2126; --ink:#e8eaed; --muted:#9aa2ad; --line:#333941;
-         --accent:#7fb3d5; --accent-weak:#1d2c38; --warn:#e0b050; --warn-bg:#2b2415;
-         --bad:#f08b82; --bad-bg:#2e1a18; --ok:#7fd0a0; --ok-bg:#152a1e; }
+  --paper:#ffffff;
+  --surface:#f4f3f0;
+  --surface-deep:#e9e7e2;
+  --rule:#d7d5d0;
+  --rule-strong:#8c8a85;
+  --ink:#1a1a1a;
+  --ink-weak:#6b6862;
+  --ink-faint:#a5a29c;
+  --accent:#8a3b12;
+  --accent-face:#efe6e0;
+  --accent-weak:#c9a894;
+  --accent-deep:#7a340f;
+  --danger:#a3231a;
+  --amount:#1f3a6e;
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);
-     font:15px/1.75 -apple-system,"Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo","Noto Sans JP",sans-serif}
+html,body{margin:0;padding:0}
+body{
+  background:var(--surface);color:var(--ink);
+  font:13px/1.5 "Yu Gothic","Hiragino Kaku Gothic ProN","Meiryo",sans-serif;
+}
 a{color:var(--accent)}
-.wrap{max-width:1080px;margin:0 auto;padding:24px 20px 72px}
 
-/* モックであることを常に出しておく帯 */
-.mockbar{background:var(--warn-bg);border-bottom:1px solid var(--warn);
-         padding:8px 16px;font-size:13px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
-.mockbar b{color:var(--warn)}
-.mockbar a{margin-left:auto}
+/* ── モックであることを常に出しておく帯 ───────────────── */
+.mockbar{
+  background:#fff8e6;border-bottom:1px solid #b45309;color:#5c4300;
+  padding:6px 14px;font-size:12px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;
+}
+.mockbar b{color:#7a5c00}
+.mockbar a{margin-left:auto;color:#7a5c00}
 
-.banner{background:var(--warn-bg);border:1px solid var(--warn);border-radius:var(--radius);
-        padding:12px 16px;margin-bottom:22px;font-size:14px}
-.banner b{color:var(--warn)}
+/* ── アプリのシェル（全画面で共通のヘッダ）───────────── */
+.shell{background:var(--paper);border-bottom:1px solid var(--rule-strong)}
+.shell-top{display:flex;align-items:stretch;gap:8px;padding:6px 10px}
+.brand{padding:2px 10px 2px 2px;line-height:1.25}
+.brand .name{font-size:15px;font-weight:700;letter-spacing:.02em}
+.brand .clinic{font-size:10.5px;color:var(--ink-weak)}
+.navbtn{
+  display:flex;flex-direction:column;justify-content:center;
+  border:1px solid var(--rule-strong);background:var(--paper);color:var(--ink);
+  padding:4px 12px;text-decoration:none;min-width:96px;
+}
+.navbtn .t{font-size:13px;font-weight:700}
+.navbtn .s{font-size:10px;color:var(--ink-weak)}
+.navbtn.is-current{border:2px solid var(--accent);background:var(--accent-face)}
+.navbtn:hover{background:var(--surface)}
+.searchbox{display:flex;margin-left:8px;flex:1;min-width:180px}
+.searchbox input{
+  flex:1;border:1px solid var(--rule-strong);border-right:0;padding:4px 8px;
+  font:inherit;background:var(--paper);color:var(--ink-faint);
+}
+.searchbox .go{background:var(--accent);color:#fff;border:1px solid var(--accent);padding:4px 18px;font-weight:700}
+.tool{border:1px solid var(--rule-strong);background:var(--paper);padding:4px 12px;font:inherit;
+      text-decoration:none;color:var(--ink);display:flex;align-items:center}
+.tool.off{color:var(--ink-faint);background:var(--surface);border-color:var(--rule);cursor:not-allowed}
+.staff{margin-left:auto;border:2px solid var(--danger);color:var(--danger);
+       padding:2px 10px;text-align:center;line-height:1.25;font-size:11px}
+.staff b{display:block;font-size:13px;color:var(--ink)}
+.shell-sub{display:flex;gap:6px;align-items:center;padding:0 10px 6px}
+.zoom{display:flex;border:1px solid var(--rule-strong)}
+.zoom span{padding:2px 10px;border-right:1px solid var(--rule-strong);background:var(--paper)}
+.zoom span:last-child{border-right:0}
 
-header h1{font-size:25px;margin:0 0 6px;letter-spacing:.01em}
-header .sub{color:var(--muted);margin:0 0 18px;font-size:14.5px}
+/* ── 患者バー ─────────────────────────────────── */
+.patient{background:var(--paper);border-bottom:1px solid var(--rule);
+         padding:8px 12px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.patient .no{border:1px solid var(--ink);padding:1px 8px;font-weight:700;font-size:13px}
+.patient .nm{font-size:20px;font-weight:700}
+.patient .nm small{font-size:12px;font-weight:400}
+.patient .meta{color:var(--ink-weak);font-size:12px}
+.patient .right{margin-left:auto;font-size:12px}
 
-.lead{background:var(--accent-weak);border-left:4px solid var(--accent);
-      padding:14px 18px;border-radius:0 var(--radius) var(--radius) 0;margin-bottom:26px}
-.lead p{margin:0 0 8px} .lead p:last-child{margin:0}
+/* ── タブ ─────────────────────────────────────── */
+.tabs{display:flex;align-items:stretch;background:var(--paper);
+      border-bottom:1px solid var(--rule-strong);padding:0 10px}
+.tabs a{padding:7px 16px 5px;text-decoration:none;color:var(--ink-weak);line-height:1.25;
+        border-bottom:3px solid transparent}
+.tabs a .s{display:block;font-size:10px}
+.tabs a.is-current{color:var(--ink);font-weight:700;border-bottom-color:var(--accent)}
+.tabs .right{margin-left:auto;display:flex;gap:6px;align-items:center;padding:4px 0}
+.tabs .right .btn{border:1px solid var(--accent);background:var(--accent);color:#fff;
+                  padding:3px 12px;text-decoration:none;font-size:12px;font-weight:700}
+.tabs .right .btn.ghost{background:var(--paper);color:var(--accent)}
 
-h2{font-size:18px;margin:34px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--line)}
-h3{font-size:15.5px;margin:22px 0 8px;color:var(--accent)}
+/* 大区分タブ（外来受付・入院・ホテル…）*/
+.bigtabs{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;padding:8px 10px;background:var(--surface)}
+.bigtabs a{border:1px solid var(--rule-strong);background:var(--paper);text-align:center;
+           padding:9px 0;text-decoration:none;color:var(--ink);font-size:14px}
+.bigtabs a.is-current{border:2px solid var(--accent);background:var(--accent-face);font-weight:700}
+.bigtabs a.off{color:var(--ink-faint);background:var(--surface-deep);border-color:var(--rule);cursor:not-allowed}
 
-/* アプリ画面の枠 */
-.app{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--panel);
-     box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:18px}
-.app-bar{background:var(--accent);color:#fff;padding:9px 14px;font-size:13.5px;font-weight:700;
-         display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.app-bar .chip{background:rgba(255,255,255,.2);padding:1px 8px;border-radius:20px;font-weight:400;font-size:12px}
-.app-bar a{color:#fff;text-decoration:none;opacity:.9;font-weight:400;font-size:12.5px}
-.app-bar a:hover{opacity:1;text-decoration:underline}
-.app-bar .right{margin-left:auto;display:flex;gap:12px}
-.app-body{padding:16px}
+/* 機能ボタンの3つの枠 */
+.fnrow{display:flex;gap:14px;padding:6px 10px 10px;background:var(--surface);flex-wrap:wrap}
+.fngroup{display:flex;gap:6px;border:1px solid var(--rule);padding:6px}
+.fngroup button,.fngroup a,.fngroup span{border:1px solid var(--rule-strong);background:var(--paper);
+  padding:5px 14px;font:inherit;color:var(--ink);text-decoration:none;min-width:66px;text-align:center}
+.fngroup .off{color:var(--ink-faint);background:var(--surface-deep);border-color:var(--rule);cursor:not-allowed}
+.fnnote{margin-left:auto;text-align:right;font-size:11.5px;color:var(--accent);line-height:1.9}
 
-/* パンくず */
-.crumb{font-size:13px;color:var(--muted);margin-bottom:12px}
-.crumb a{text-decoration:none}
-.crumb span{margin:0 6px}
+/* ── 一覧の表（当日の患者を1画面で見渡せる密度にする）─────── */
+.gridwrap{background:var(--paper);overflow-x:auto;border-top:1px solid var(--rule-strong)}
+table.grid{border-collapse:collapse;width:100%;font-size:12px;white-space:nowrap}
+table.grid th,table.grid td{border:1px solid var(--rule);padding:3px 6px;text-align:left}
+table.grid thead th{background:var(--surface-deep);font-weight:700;position:sticky;top:0}
+table.grid tbody tr:hover{background:var(--accent-face)}
+table.grid td.c{text-align:center}
+table.grid td.r{text-align:right;font-variant-numeric:tabular-nums}
+table.grid tr.done td{color:var(--ink-faint);background:var(--surface)}
+table.grid a{text-decoration:none;font-weight:700}
 
-table{width:100%;border-collapse:collapse;font-size:13.5px}
-th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
-th{background:var(--accent-weak);font-weight:700;white-space:nowrap}
-td.num{text-align:right;font-variant-numeric:tabular-nums}
-tr.total td{font-weight:700;background:var(--accent-weak)}
-tr.clickable:hover{background:var(--accent-weak);cursor:pointer}
-tr.clickable a{text-decoration:none;font-weight:700}
+/* ── カルテのフォーム（紙カルテの写し）───────────────── */
+.karte{background:var(--paper);border:1px solid var(--rule-strong);margin:10px}
+.krow{display:flex;border-bottom:1px solid var(--rule)}
+.krow:last-child{border-bottom:0}
+.klabel{flex:0 0 30px;background:var(--surface-deep);border-right:1px solid var(--rule);
+        display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;
+        writing-mode:vertical-rl;letter-spacing:.3em;padding:8px 0}
+.kbody{flex:1;padding:5px 6px;display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+.field{display:flex;align-items:center;gap:4px}
+.field .lb{background:var(--surface-deep);border:1px solid var(--rule);padding:3px 7px;font-size:11.5px}
+.field .val{border:1px solid var(--rule);background:var(--paper);padding:3px 8px;min-width:70px;font-size:12.5px}
+.field .val.wide{min-width:260px}
+.field .val.grow{flex:1;min-width:180px}
+.field .val.empty{color:var(--ink-faint)}
+.radio{display:inline-flex;align-items:center;gap:3px;font-size:12px;margin-right:6px}
+.radio i{width:11px;height:11px;border:1px solid var(--rule-strong);border-radius:50%;display:inline-block}
+.radio.on i{border-color:var(--accent);background:radial-gradient(var(--accent) 45%,#fff 46%)}
+.memo{border:1px solid var(--rule);background:var(--paper);padding:7px 9px;
+      min-height:64px;width:100%;font-size:12.5px;white-space:pre-wrap}
+.memo.tall{min-height:110px}
 
-.pill{display:inline-block;padding:1px 8px;border-radius:20px;font-size:12px;border:1px solid;white-space:nowrap}
-.pill.wait{color:var(--warn);border-color:var(--warn);background:var(--warn-bg)}
-.pill.done{color:var(--ok);border-color:var(--ok);background:var(--ok-bg)}
-.pill.now{color:var(--accent);border-color:var(--accent);background:var(--accent-weak)}
+/* 診察履歴のカード */
+.history{display:flex;gap:6px;padding:8px 10px;background:var(--paper);
+         border-bottom:1px solid var(--rule);align-items:stretch;flex-wrap:wrap}
+.history .lb{background:var(--surface-deep);border:1px solid var(--rule);padding:4px 8px;font-size:11.5px;
+             display:flex;align-items:center}
+.hcard{border:1px solid var(--rule-strong);background:var(--paper);padding:5px 10px;font-size:11.5px;min-width:110px}
+.hcard.is-current{border:2px solid var(--accent);background:var(--accent-face)}
+.hcard .d{font-weight:700;font-size:12.5px}
+.hcard .tag{display:inline-block;border:1px solid var(--accent);color:var(--accent);
+            padding:0 5px;font-size:10px;margin-top:2px}
 
-.vitals{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:14px}
-.vital{border:1px solid var(--line);border-radius:8px;padding:9px 11px;background:var(--bg)}
-.vital .k{font-size:12px;color:var(--muted)}
-.vital .v{font-size:19px;font-weight:700;font-variant-numeric:tabular-nums}
-.vital .v small{font-size:12px;font-weight:400;color:var(--muted)}
+/* 科の選択行 */
+.picker{display:flex;gap:8px;align-items:center;padding:6px 10px;background:var(--paper);
+        border-bottom:1px solid var(--rule);flex-wrap:wrap;font-size:12px}
+.picker .lb{background:var(--surface-deep);border:1px solid var(--rule);padding:3px 8px}
 
-.note{background:var(--bg);border:1px dashed var(--line);border-radius:8px;
-      padding:11px 14px;margin-top:14px;font-size:13.5px;color:var(--muted)}
-.note b{color:var(--ink)}
+/* 表裏の切替 */
+.sheettab{display:flex;gap:18px;padding:6px 12px 0;background:var(--paper);font-size:12.5px}
+.sheettab span{padding-bottom:4px;color:var(--ink-weak)}
+.sheettab span.is-current{color:var(--ink);font-weight:700;border-bottom:3px solid var(--accent)}
 
-.finding{border:1px solid var(--line);border-left:4px solid var(--bad);border-radius:0 8px 8px 0;
-         padding:14px 18px;margin:16px 0;background:var(--panel)}
-.finding h3{margin-top:0;color:var(--bad)}
-.finding dl{margin:0;display:grid;grid-template-columns:6.5em 1fr;gap:5px 12px;font-size:14px}
-.finding dt{color:var(--muted);font-weight:700}
-.finding dd{margin:0}
+/* ── 画面下の操作列 ───────────────────────────── */
+.actions{display:flex;gap:8px;align-items:center;padding:10px;background:var(--surface);
+         border-top:1px solid var(--rule-strong);flex-wrap:wrap}
+.actions .keys{font-size:11px;color:var(--ink-weak);margin-right:auto}
+.actions a,.actions button{border:1px solid var(--rule-strong);background:var(--paper);
+  padding:6px 18px;font:inherit;text-decoration:none;color:var(--ink);min-width:88px;text-align:center}
+.actions .off{color:var(--ink-faint);background:var(--surface-deep);border-color:var(--rule);cursor:not-allowed}
+.actions .primary{border-color:var(--accent);color:var(--accent);font-weight:700}
 
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-@media(max-width:760px){.grid2{grid-template-columns:1fr}}
-.card{border:1px solid var(--line);border-radius:var(--radius);padding:14px 18px;background:var(--panel)}
+/* ── 説明ページ ─────────────────────────────── */
+.wrap{max-width:1000px;margin:0 auto;padding:22px 20px 64px;font-size:14.5px;line-height:1.8}
+.wrap h1{font-size:24px;margin:0 0 6px}
+.wrap .sub{color:var(--ink-weak);margin:0 0 18px;font-size:14px}
+.wrap h2{font-size:17px;margin:32px 0 10px;padding-bottom:7px;border-bottom:2px solid var(--rule)}
+.wrap h3{font-size:15px;margin:20px 0 7px;color:var(--accent)}
+.banner{background:#fff8e6;border:1px solid #b45309;padding:12px 16px;margin-bottom:20px;font-size:13.5px}
+.banner b{color:#7a5c00}
+.lead{background:var(--accent-face);border-left:4px solid var(--accent);padding:13px 17px;margin-bottom:22px}
+.lead p{margin:0 0 7px} .lead p:last-child{margin:0}
+.card{border:1px solid var(--rule);background:var(--paper);padding:13px 17px}
 .card h3{margin-top:0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){.grid2{grid-template-columns:1fr}}
+.finding{border:1px solid var(--rule);border-left:4px solid var(--danger);background:var(--paper);
+         padding:13px 17px;margin:14px 0}
+.finding h3{margin-top:0;color:var(--danger)}
+.finding dl{margin:0;display:grid;grid-template-columns:7em 1fr;gap:4px 12px;font-size:13.5px}
+.finding dt{color:var(--ink-weak);font-weight:700}
+.finding dd{margin:0}
+.wrap table{border-collapse:collapse;width:100%;font-size:13px;margin-bottom:10px}
+.wrap table th,.wrap table td{border:1px solid var(--rule);padding:6px 9px;text-align:left}
+.wrap table th{background:var(--surface-deep)}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+.btnrow a{border:1px solid var(--accent);background:var(--accent);color:#fff;
+          padding:8px 18px;text-decoration:none;font-weight:700;font-size:14px}
+.btnrow a.ghost{background:var(--paper);color:var(--accent)}
+.note{background:var(--surface);border:1px solid var(--rule);padding:10px 13px;
+      margin:12px 10px;font-size:12.5px;color:var(--ink-weak)}
+.note b{color:var(--ink)}
+footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--rule);color:var(--ink-weak);font-size:12.5px}
+code{background:var(--surface);border:1px solid var(--rule);padding:0 4px;font-size:12px}
 
-/* メニュー画面 */
-.menu-primary{display:flex;gap:12px;align-items:center;background:var(--accent);color:#fff;
-              padding:18px 20px;border-radius:var(--radius);text-decoration:none;margin-bottom:16px}
-.menu-primary .label{font-weight:700;font-size:16px}
-.menu-primary .desc{display:block;font-weight:400;font-size:13px;opacity:.9}
-.menu-group{margin-bottom:18px}
-.menu-group h3{margin:0 0 8px}
-.menu-list{list-style:none;padding:0;margin:0;display:grid;
-           grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px}
-.menu-list a{display:block;padding:11px 14px;border:1px solid var(--line);border-radius:8px;
-             background:var(--panel);text-decoration:none;color:var(--ink);font-size:14px}
-.menu-list a:hover{border-color:var(--accent);background:var(--accent-weak)}
-.menu-list a.is-planned{color:var(--muted);background:var(--bg);cursor:not-allowed;border-style:dashed}
-.menu-list a.is-planned::after{content:"実装前";float:right;font-size:11px;color:var(--warn);
-                               border:1px solid var(--warn);border-radius:20px;padding:0 7px}
+/* ── karte / accounting / owner で追加したもの ───────────
+ * 角丸・グラデーション・影を使わない方針に合わせている。
+ */
 
-.btnrow{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
-.btn{display:inline-block;padding:8px 16px;border-radius:8px;border:1px solid var(--accent);
-     background:var(--accent);color:#fff;text-decoration:none;font-size:14px;font-weight:700}
-.btn.ghost{background:transparent;color:var(--accent)}
+/* タブ内の押せない項目（.tabs a のグレー版。span でも同じ形になるようにする）*/
+.tabs .off{padding:7px 16px 5px;color:var(--ink-faint);line-height:1.25;
+           border-bottom:3px solid transparent;cursor:not-allowed}
+.tabs .off .s{display:block;font-size:10px}
 
-footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);
-       color:var(--muted);font-size:13px}
-code{background:var(--bg);border:1px solid var(--line);padding:1px 5px;border-radius:4px;font-size:12.5px}
+/* .kbody / .pbody の途中で行を改める（紙カルテの段組みを保つため）*/
+.kbreak{flex:0 0 100%;height:0}
+
+/* .field に入らない見出しラベル（種類・性別・体格・転帰・区分など）*/
+.kbody > .lb,.pbody > .lb{background:var(--surface-deep);border:1px solid var(--rule);
+                          padding:3px 7px;font-size:11.5px}
+
+/* 補足の小さい灰文字 */
+.faint{color:var(--ink-faint);font-size:11.5px}
+
+/* 異常・未算入の明示（会計の単価未設定行など）*/
+.warn{color:var(--danger);font-weight:700}
+
+/* 金額列と合計行 */
+table.grid th.r{text-align:right}
+table.grid td.amt{text-align:right;font-variant-numeric:tabular-nums;
+                  color:var(--amount);font-weight:700}
+table.grid tr.sum td{background:var(--surface-deep);font-weight:700;
+                     border-top:2px solid var(--rule-strong)}
+
+/* 顧客画面の4分割 */
+.panels{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px;align-items:start}
+@media(max-width:900px){.panels{grid-template-columns:1fr}}
+.panel{border:1px solid var(--rule-strong);background:var(--paper);min-width:0}
+.ptitle{background:var(--surface-deep);border-bottom:1px solid var(--rule);
+        padding:4px 9px;font-size:12.5px;font-weight:700}
+.pbody{padding:7px 9px;display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+.panel .gridwrap{border-top:0}
+
+/* シェル右側の機能ボタンの現在地（.navbtn.is-current と同じ見せ方）*/
+.tool.is-current{border:2px solid var(--accent);background:var(--accent-face);font-weight:700}
+
+/* 予約の種類（時間割のセル内と凡例で使う小さな枠）*/
+.kind{display:inline-block;border:1px solid var(--rule-strong);background:var(--surface-deep);
+      padding:0 4px;margin-right:4px;font-size:10.5px;font-weight:700}
+.kind.acc{border-color:var(--accent);background:var(--accent-face);color:var(--accent)}
+
+/* 時間割：複数の目盛りにまたがる時間の帯（開始時刻を上端にそろえる）*/
+table.grid td.band{vertical-align:top}

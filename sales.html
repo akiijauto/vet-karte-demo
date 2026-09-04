@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>売上集計｜電子カルテ 画面モック</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="mockbar">
+  <b>画面モック</b>　動くのはページ間のリンクだけです。データはすべて架空です。
+  <a href="index.html">← この取り組みの説明へ</a>
+</div>
+
+<div class="shell">
+  <div class="shell-top">
+    <div class="brand"><div class="name">電子カルテ</div><div class="clinic">サンプル動物病院</div></div>
+    <a class="navbtn" href="list.html"><span class="t">本日の患者</span><span class="s">外来受付</span></a>
+    <a class="navbtn" href="owner.html"><span class="t">検索</span><span class="s">飼主・動物をさがす</span></a>
+    <span class="navbtn" style="color:var(--ink-faint)"><span class="t">新規飼主</span><span class="s">飼主・動物をあたらしく登録</span></span>
+    <span class="navbtn" style="color:var(--ink-faint)"><span class="t">設定</span><span class="s">病院設定ほか</span></span>
+    <span class="searchbox"><input value="飼主名・カナ・カルテNo・電話番号" readonly><span class="go">検索</span></span>
+    <span class="tool is-current">売上集計</span>
+    <a class="tool" href="ward.html">入院</a>
+    <span class="tool off">DM管理</span>
+    <span class="staff">担当<b>未設定</b></span>
+  </div>
+  <div class="shell-sub">
+    <span class="zoom"><span>−</span><span>100%</span><span>＋</span></span>
+    <span class="tool off">ログアウト</span>
+  </div>
+</div>
+
+<div class="picker">
+  <span class="lb">集計単位</span>
+  <span class="radio"><i></i>日次</span>
+  <span class="radio on"><i></i>月次</span>
+  <span class="radio"><i></i>年次</span>
+  <span class="field"><span class="lb">対象期間</span><span class="val">2026年9月</span></span>
+  <span class="field"><span class="lb">期間</span><span class="val">2026/9/1</span><span>〜</span><span class="val">2026/9/30</span></span>
+  <span class="tool">◀ 前月</span>
+  <span class="tool">翌月 ▶</span>
+  <span class="lb">対象</span>
+  <span class="radio on"><i></i>確定済のみ</span>
+  <span class="radio"><i></i>未確定を含む</span>
+  <span class="faint">診療日 25日（休診 5日：日曜4日・祝日1日）</span>
+</div>
+
+<div class="fnrow">
+  <div class="fngroup">
+    <button>分類別</button>
+    <button>担当別</button>
+    <button>日別</button>
+    <span class="off">動物種別</span>
+    <span class="off">飼主別</span>
+  </div>
+  <div class="fngroup">
+    <button>CSV出力</button>
+    <button>印刷</button>
+    <span class="off">グラフ</span>
+    <span class="off">前年同月と比較</span>
+  </div>
+  <div class="fngroup">
+    <a href="list.html">外来一覧</a>
+    <a href="accounting.html">会計</a>
+    <a href="ward.html">入院</a>
+  </div>
+  <div class="fnnote">
+    集計対象 <b>確定済 983伝票</b>／<b>6,384,000円</b><br>
+    <span style="color:var(--ink-faint)">未確定 4伝票は集計に入れていません</span>
+  </div>
+</div>
+
+<div class="gridwrap">
+<table class="grid">
+  <thead>
+    <tr>
+      <th>分類</th><th class="r">件数（明細行）</th><th class="r">金額</th><th class="r">構成比</th><th class="r">前月比</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>01 診察</td><td class="r">921</td><td class="amt">753,300</td><td class="r">11.8%</td><td class="r">+3.2%</td></tr>
+    <tr><td>02 処置</td><td class="r">402</td><td class="amt">459,600</td><td class="r">7.2%</td><td class="r">+1.4%</td></tr>
+    <tr><td>03 検査</td><td class="r">486</td><td class="amt">836,300</td><td class="r">13.1%</td><td class="r">+6.8%</td></tr>
+    <tr><td>04 手術</td><td class="r">58</td><td class="amt">568,200</td><td class="r">8.9%</td><td class="r">-2.1%</td></tr>
+    <tr><td>05 入院</td><td class="r">174</td><td class="amt">389,400</td><td class="r">6.1%</td><td class="r">+9.5%</td></tr>
+    <tr><td>06 薬剤</td><td class="r">813</td><td class="amt">1,072,500</td><td class="r">16.8%</td><td class="r">+2.7%</td></tr>
+    <tr><td>07 注射</td><td class="r">347</td><td class="amt">370,300</td><td class="r">5.8%</td><td class="r">-0.8%</td></tr>
+    <tr><td>08 予防</td><td class="r">296</td><td class="amt">683,100</td><td class="r">10.7%</td><td class="r">+12.4%</td></tr>
+    <tr><td>09 ホテル</td><td class="r">46</td><td class="amt">134,100</td><td class="r">2.1%</td><td class="r">+18.9%</td></tr>
+    <tr><td>10 トリミング</td><td class="r">88</td><td class="amt">204,300</td><td class="r">3.2%</td><td class="r">+4.6%</td></tr>
+    <tr><td>11 フード</td><td class="r">211</td><td class="amt">306,400</td><td class="r">4.8%</td><td class="r">-1.9%</td></tr>
+    <tr><td>12 用品</td><td class="r">134</td><td class="amt">121,300</td><td class="r">1.9%</td><td class="r">+5.3%</td></tr>
+    <tr><td>13 証明書</td><td class="r">39</td><td class="amt">44,700</td><td class="r">0.7%</td><td class="r">+7.1%</td></tr>
+    <tr><td>14 麻酔</td><td class="r">61</td><td class="amt">166,000</td><td class="r">2.6%</td><td class="r">-3.4%</td></tr>
+    <tr><td>15 画像診断</td><td class="r">77</td><td class="amt">153,200</td><td class="r">2.4%</td><td class="r">+8.2%</td></tr>
+    <tr><td>16 歯科</td><td class="r">19</td><td class="amt">70,200</td><td class="r">1.1%</td><td class="r">+21.7%</td></tr>
+    <tr><td>17 往診</td><td class="r">12</td><td class="amt">31,900</td><td class="r">0.5%</td><td class="r">-6.3%</td></tr>
+    <tr><td>18 その他</td><td class="r">27</td><td class="amt">19,200</td><td class="r">0.3%</td><td class="r">+0.5%</td></tr>
+    <tr class="sum">
+      <td>合計（18分類）</td><td class="r">4,211</td><td class="amt">6,384,000</td>
+      <td class="r">100.0%</td><td class="r">+4.2%</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="panels">
+
+  <div class="panel">
+    <div class="ptitle">担当別（2026年9月）</div>
+    <div class="gridwrap">
+    <table class="grid">
+      <thead>
+        <tr><th>担当</th><th class="r">件数（伝票）</th><th class="r">金額</th><th class="r">構成比</th><th class="r">1伝票あたり</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>獣医A</td><td class="r">432</td><td class="amt">2,808,900</td><td class="r">44.0%</td><td class="r">6,502</td></tr>
+        <tr><td>獣医B</td><td class="r">364</td><td class="amt">2,362,100</td><td class="r">37.0%</td><td class="r">6,489</td></tr>
+        <tr><td>看護C</td><td class="r">187</td><td class="amt">1,213,000</td><td class="r">19.0%</td><td class="r">6,487</td></tr>
+        <tr class="sum"><td>合計</td><td class="r">983</td><td class="amt">6,384,000</td>
+            <td class="r">100.0%</td><td class="r">6,494</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="pbody">
+      <span class="faint">担当は伝票の担当者です。1伝票を複数人で分担した場合も、伝票の担当者にまとめて計上します。</span>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="ptitle">集計に入っている伝票・入っていない伝票</div>
+    <div class="gridwrap">
+    <table class="grid">
+      <thead>
+        <tr><th>区分</th><th class="r">伝票数</th><th class="r">金額</th><th>扱い</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>確定済</td><td class="r">983</td><td class="amt">6,384,000</td><td>上の表すべてに計上</td></tr>
+        <tr class="warn"><td>未確定</td><td class="r">4</td><td class="r">－</td><td>金額は集計に入れず、件数だけ出す</td></tr>
+        <tr class="sum"><td>当月に起票された伝票</td><td class="r">987</td><td class="amt">6,384,000</td>
+            <td>集計額は確定済の 983 伝票ぶん</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="pbody">
+      <span class="field"><span class="lb">未算入ありの伝票</span><span class="val warn">6 件</span></span>
+      <span class="field"><span class="lb">未算入の明細行</span><span class="val warn">9 行</span></span>
+      <span class="faint">確定済 983 伝票の内数です。単価が設定されていない行を含みますが、
+      算入できた行の金額は上の集計に入れたうえで「未算入あり」として数えています。</span>
+      <span class="kbreak"></span>
+      <span class="field"><span class="lb">未確定の内訳</span><span class="val wide">入院継続中 2・検査結果待ち 1・単価の確認待ち 1</span></span>
+    </div>
+  </div>
+
+</div>
+
+<div class="gridwrap">
+<table class="grid">
+  <thead>
+    <tr>
+      <th>日</th><th>曜</th><th class="r">件数（伝票）</th><th class="r">金額</th><th class="r">1伝票あたり</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td class="c">1</td><td class="c">火</td><td class="r">38</td><td class="amt">243,100</td><td class="r">6,397</td></tr>
+    <tr><td class="c">2</td><td class="c">水</td><td class="r">41</td><td class="amt">262,800</td><td class="r">6,410</td></tr>
+    <tr><td class="c">3</td><td class="c">木</td><td class="r">22</td><td class="amt">141,600</td><td class="r">6,436</td></tr>
+    <tr><td class="c">4</td><td class="c">金</td><td class="r">44</td><td class="amt">289,500</td><td class="r">6,580</td></tr>
+    <tr><td class="c">5</td><td class="c">土</td><td class="r">52</td><td class="amt">341,200</td><td class="r">6,562</td></tr>
+    <tr class="done"><td class="c">6</td><td class="c">日</td><td class="r">0</td><td class="r">0</td><td class="r">休診</td></tr>
+    <tr><td class="c">7</td><td class="c">月</td><td class="r">36</td><td class="amt">231,400</td><td class="r">6,428</td></tr>
+    <tr><td class="c">8</td><td class="c">火</td><td class="r">40</td><td class="amt">258,900</td><td class="r">6,472</td></tr>
+    <tr><td class="c">9</td><td class="c">水</td><td class="r">43</td><td class="amt">271,500</td><td class="r">6,314</td></tr>
+    <tr><td class="c">10</td><td class="c">木</td><td class="r">24</td><td class="amt">152,300</td><td class="r">6,346</td></tr>
+    <tr><td class="c">11</td><td class="c">金</td><td class="r">46</td><td class="amt">302,700</td><td class="r">6,580</td></tr>
+    <tr><td class="c">12</td><td class="c">土</td><td class="r">54</td><td class="amt">358,400</td><td class="r">6,637</td></tr>
+    <tr class="done"><td class="c">13</td><td class="c">日</td><td class="r">0</td><td class="r">0</td><td class="r">休診</td></tr>
+    <tr><td class="c">14</td><td class="c">月</td><td class="r">35</td><td class="amt">224,600</td><td class="r">6,417</td></tr>
+    <tr><td class="c">15</td><td class="c">火</td><td class="r">39</td><td class="amt">251,800</td><td class="r">6,456</td></tr>
+    <tr><td class="c">16</td><td class="c">水</td><td class="r">42</td><td class="amt">276,900</td><td class="r">6,593</td></tr>
+    <tr><td class="c">17</td><td class="c">木</td><td class="r">23</td><td class="amt">147,500</td><td class="r">6,413</td></tr>
+    <tr><td class="c">18</td><td class="c">金</td><td class="r">45</td><td class="amt">296,300</td><td class="r">6,584</td></tr>
+    <tr><td class="c">19</td><td class="c">土</td><td class="r">51</td><td class="amt">334,800</td><td class="r">6,565</td></tr>
+    <tr class="done"><td class="c">20</td><td class="c">日</td><td class="r">0</td><td class="r">0</td><td class="r">休診</td></tr>
+    <tr><td class="c">21</td><td class="c">月</td><td class="r">33</td><td class="amt">212,700</td><td class="r">6,445</td></tr>
+    <tr><td class="c">22</td><td class="c">火</td><td class="r">37</td><td class="amt">239,400</td><td class="r">6,470</td></tr>
+    <tr class="done"><td class="c">23</td><td class="c">水</td><td class="r">0</td><td class="r">0</td><td class="r">休診（祝日）</td></tr>
+    <tr><td class="c">24</td><td class="c">木</td><td class="r">25</td><td class="amt">158,900</td><td class="r">6,356</td></tr>
+    <tr><td class="c">25</td><td class="c">金</td><td class="r">47</td><td class="amt">308,600</td><td class="r">6,566</td></tr>
+    <tr><td class="c">26</td><td class="c">土</td><td class="r">53</td><td class="amt">349,100</td><td class="r">6,587</td></tr>
+    <tr class="done"><td class="c">27</td><td class="c">日</td><td class="r">0</td><td class="r">0</td><td class="r">休診</td></tr>
+    <tr><td class="c">28</td><td class="c">月</td><td class="r">34</td><td class="amt">218,500</td><td class="r">6,426</td></tr>
+    <tr><td class="c">29</td><td class="c">火</td><td class="r">38</td><td class="amt">247,200</td><td class="r">6,505</td></tr>
+    <tr><td class="c">30</td><td class="c">水</td><td class="r">41</td><td class="amt">264,300</td><td class="r">6,446</td></tr>
+    <tr class="sum">
+      <td colspan="2">合計（診療日 25日）</td><td class="r">983</td><td class="amt">6,384,000</td><td class="r">6,494</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="note" style="margin-bottom:0">
+  <b>3つの合計は同じ額です。</b>
+  分類別 6,384,000円／日別 6,384,000円／担当別 6,384,000円。
+  伝票数も、日別（983）と担当別（983）で一致します。
+  分類別の「件数」だけは<b>明細行の数</b>（4,211行）で、数えているものが違うため列名を分けています。
+</div>
+
+<div class="actions">
+  <span class="keys">集計はいつでも、そのもとになった伝票までさかのぼれます</span>
+  <button class="primary">CSV出力</button>
+  <button>印刷</button>
+  <button class="off" disabled>締め処理</button>
+  <a href="list.html">外来一覧へ</a>
+  <a href="accounting.html">会計へ</a>
+</div>
+
+<div class="note">
+  <b>ここでAIに検証させたこと：</b>「分類別の合計と、日別の合計と、伝票の総額が<b>3つとも一致すること</b>」。
+  1つの数字を3方向から数えて突き合わせます。どこか1か所でも別の持ち方をしていると、この検算は通りません。<br>
+  <b>売上は会計の明細から積み上げます。集計だけを別に持ちません。</b>
+  集計値を別に保存すると、伝票を1件直したときに片方だけが古くなり、
+  どちらが正しいのか誰にも分からなくなるためです。この画面の数字は、すべて会計の明細を数え直した結果です。<br>
+  <b>未確定の伝票は集計に入れず、件数だけ別に出します。</b>
+  「合計が合わない」と言われたときに、原因が未確定分の4件だとその場で答えられるようにするためです。
+  金額を混ぜてしまうと、確定したのか、していないのかが後から分けられなくなります。<br>
+  <b>単価未設定などで算入できなかった行がある伝票は、金額を伏せずに「未算入あり」として数えます。</b>
+  会計画面と同じ考え方です。算入できた行はそのまま計上し、算入できなかった行数を横に出します。
+  合計を止めてしまうと窓口の業務が止まるため、<b>業務は流したまま、異常だけが見える</b>ようにしています
+  （<a href="index.html#findings">説明ページの②</a>）。<br>
+  グラフは置いていません。<b>金額を確かめる作業では、表の数字をそのまま読めることのほうが役に立つ</b>ためです。
+  比較は CSV出力から行います。<br>
+  押せない機能はグレーで残しています。「無い」のか「この画面からは操作しない」のかを区別できるようにするためです。
+</div>
+
+</body>
+</html>

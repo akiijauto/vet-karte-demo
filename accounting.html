@@ -9,60 +9,137 @@
 <body>
 
 <div class="mockbar">
-  <b>画面モック</b>　動くシステムではありません。データはすべて架空です。
-  <a href="index.html">← 説明ページへ戻る</a>
+  <b>画面モック</b>　動くのはページ間のリンクだけです。データはすべて架空です。
+  <a href="index.html">← この取り組みの説明へ</a>
 </div>
 
-<div class="wrap">
-
-  <div class="app">
-    <div class="app-bar">
-      電子カルテシステム — 会計
-      <span class="chip">モック / 架空データ</span>
-      <span class="right"><a href="karte.html">カルテ</a><a href="list.html">外来一覧</a><a href="menu.html">メニュー</a></span>
-    </div>
-    <div class="app-body">
-
-      <p class="crumb"><a href="menu.html">メニュー</a><span>›</span><a href="list.html">外来一覧</a><span>›</span><a href="karte.html">カルテ 0871-1</a><span>›</span>会計</p>
-
-      <table style="margin-bottom:14px">
-        <tr><th style="width:9em">カルテNo</th><td>0871-1</td><th style="width:7em">飼主</th><td>架空 太郎</td></tr>
-        <tr><th>動物名</th><td>クロ</td><th>診療日</th><td>2026-09-05</td></tr>
-      </table>
-
-      <table>
-        <thead><tr><th style="width:6em">区分</th><th>項目</th><th class="num" style="width:7em">単価</th>
-                   <th class="num" style="width:5em">数量</th><th class="num" style="width:8em">金額</th></tr></thead>
-        <tbody>
-          <tr><td>診察</td><td>再診料</td><td class="num">1,100</td><td class="num">1</td><td class="num">1,100</td></tr>
-          <tr><td>処置</td><td>皮膚処置</td><td class="num">2,200</td><td class="num">1</td><td class="num">2,200</td></tr>
-          <tr><td>薬剤</td><td>外用薬（10g）</td><td class="num">1,650</td><td class="num">2</td><td class="num">3,300</td></tr>
-          <tr><td>薬剤</td><td>内服薬（14日分）</td>
-              <td class="num" style="color:var(--bad)">未設定</td><td class="num">1</td>
-              <td class="num" style="color:var(--bad)">算入せず</td></tr>
-          <tr class="total"><td colspan="4">合計　<span style="color:var(--bad);font-weight:700">※ 未算入 1 行あり</span></td>
-              <td class="num">6,600</td></tr>
-        </tbody>
-      </table>
-
-      <div class="btnrow">
-        <a class="btn ghost" href="karte.html">カルテへ戻る</a>
-        <a class="btn ghost" href="list.html">外来一覧へ戻る</a>
-      </div>
-
-      <div class="note">
-        <b>ここでAIに検証させたこと：</b>「合計額が、明細のどの行も取りこぼさずに計算されていること」。<br>
-        <b>この検証で不具合が1件見つかりました。</b>
-        単価が入っていない行を<b>0円として黙って足していた</b>というものです
-        （<a href="index.html#findings">説明ページの②</a>）。<br>
-        いまは上のように<b>未算入の行数を合計の隣に必ず出す</b>仕様にしています。
-        金額を伏せて「それらしい合計」を出すことのほうが危険だからです。<br>
-        会計の確定・レシート印刷・支払方法の登録は実装前です。
-      </div>
-
-    </div>
+<div class="shell">
+  <div class="shell-top">
+    <div class="brand"><div class="name">電子カルテ</div><div class="clinic">サンプル動物病院</div></div>
+    <a class="navbtn" href="list.html"><span class="t">本日の患者</span><span class="s">外来受付</span></a>
+    <a class="navbtn" href="owner.html"><span class="t">検索</span><span class="s">飼主・動物をさがす</span></a>
+    <span class="navbtn" style="color:var(--ink-faint)"><span class="t">新規飼主</span><span class="s">飼主・動物をあたらしく登録</span></span>
+    <span class="navbtn" style="color:var(--ink-faint)"><span class="t">設定</span><span class="s">病院設定ほか</span></span>
+    <span class="searchbox"><input value="飼主名・カナ・カルテNo・電話番号" readonly><span class="go">検索</span></span>
+    <a class="tool" href="sales.html">売上集計</a>
+    <a class="tool" href="ward.html">入院</a>
+    <span class="tool off">DM管理</span>
+    <span class="staff">担当<b>未設定</b></span>
   </div>
-
+  <div class="shell-sub">
+    <span class="zoom"><span>−</span><span>100%</span><span>＋</span></span>
+    <span class="tool off">ログアウト</span>
+  </div>
 </div>
+
+<div class="patient">
+  <span class="no">0871-1</span>
+  <span class="nm">クロ<small>　ちゃん</small></span>
+  <span class="meta">架空 太郎　様</span>
+  <span class="meta">猫・雑種／オス（去勢済）／4歳5ヶ月</span>
+  <span class="right"><a class="tool" href="list.html">患者を離す</a></span>
+</div>
+
+<div class="tabs">
+  <a href="owner.html">顧客<span class="s">飼主・動物データ</span></a>
+  <a href="karte.html">診察<span class="s">カルテ</span></a>
+  <a href="exam.html">検査<span class="s">検査値・基準値</span></a>
+  <a href="accounting.html" class="is-current">会計<span class="s">明細・請求</span></a>
+  <div class="right">
+    <span class="btn">領収書を印刷</span>
+    <span class="btn ghost">明細書</span>
+  </div>
+</div>
+
+<div class="picker">
+  <span class="field"><span class="lb">診療日</span><span class="val">2026/9/5</span></span>
+  <span class="field"><span class="lb">伝票No.</span><span class="val">260905-014</span></span>
+  <span class="lb">会計分類</span>
+  <span class="radio on"><i></i>01 診察</span>
+  <span class="radio"><i></i>02 処置</span>
+  <span class="radio"><i></i>03 検査</span>
+  <span class="radio"><i></i>04 手術</span>
+  <span class="radio"><i></i>05 入院</span>
+  <span class="radio"><i></i>06 薬剤</span>
+  <span class="radio"><i></i>07 注射</span>
+  <span class="radio"><i></i>08 予防</span>
+  <span class="faint">09〜18：フード・用品・トリミング・証明書ほか</span>
+</div>
+
+<div class="fnrow">
+  <div class="fngroup">
+    <button>明細追加</button>
+    <button>数量変更</button>
+    <button class="off" disabled>行削除</button>
+    <button class="off" disabled>値引</button>
+  </div>
+  <div class="fngroup">
+    <button class="off" disabled>預り金</button>
+    <button class="off" disabled>掛売</button>
+    <button class="off" disabled>分割会計</button>
+    <button class="off" disabled>保険請求</button>
+  </div>
+  <div class="fngroup">
+    <a href="karte.html">カルテ</a>
+    <a href="owner.html">顧客</a>
+    <a href="list.html">外来一覧</a>
+  </div>
+  <div class="fnnote">
+    会計の区分は<b>全18分類</b><br>
+    <span style="color:var(--ink-faint)">この伝票で使うのは 01・02・06</span>
+  </div>
+</div>
+
+<div class="gridwrap">
+<table class="grid">
+  <thead>
+    <tr>
+      <th>区分</th><th>項目</th><th class="r">単価</th><th class="r">数量</th><th class="r">金額</th>
+      <th>担当</th><th>備考</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>01 診察</td><td>再診料</td><td class="r">1,100</td><td class="r">1</td><td class="amt">1,100</td>
+        <td>獣医A</td><td></td></tr>
+    <tr><td>02 処置</td><td>皮膚処置</td><td class="r">2,200</td><td class="r">1</td><td class="amt">2,200</td>
+        <td>獣医A</td><td></td></tr>
+    <tr><td>06 薬剤</td><td>外用薬（10g）</td><td class="r">1,650</td><td class="r">2</td><td class="amt">3,300</td>
+        <td>獣医A</td><td></td></tr>
+    <tr><td>06 薬剤</td><td>内服薬（14日分）</td>
+        <td class="r warn">未設定</td><td class="r">1</td><td class="r warn">算入せず</td>
+        <td>獣医A</td><td class="warn">単価マスタに登録がありません</td></tr>
+    <tr class="sum">
+      <td colspan="4">合計　<span class="warn">※ 未算入 1 行あり</span></td>
+      <td class="amt">6,600</td><td></td><td></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="actions">
+  <span class="keys">未算入の行がある伝票は、確定前に単価マスタの登録が必要です</span>
+  <button>会計登録</button>
+  <button>領収書印刷</button>
+  <button>明細書印刷</button>
+  <button class="off" disabled>取消</button>
+  <button class="off" disabled>削除</button>
+  <a href="karte.html">カルテへ戻る</a>
+  <a href="list.html">外来一覧へ戻る</a>
+</div>
+
+<div class="note">
+  <b>ここでAIに検証させたこと：</b>「合計額が、明細のどの行も取りこぼさずに計算されていること」。<br>
+  <b>この検証で不具合が見つかりました。</b>
+  単価が設定されていない行を、<b>0円として黙って足していた</b>というものです。
+  請求額が過少になるにもかかわらず、<b>画面はどこも赤くならず</b>、気づく手がかりがありませんでした。<br>
+  対処として、<b>合計を伏せる（エラーにする）のではなく、未算入の行数を明示する</b>仕様に是正しました。
+  会計を止めてしまうと窓口の業務そのものが止まるため、
+  <b>業務は流したまま、異常だけが見える</b>ようにする必要があったからです
+  （<a href="index.html#findings">説明ページの②</a>）。<br>
+  会計の区分は、窓口で日々使われている分類に沿って並べています（全18分類のうち01〜08が稼働）。<br>
+  押せない機能はグレーで残しています。「無い」のか「まだ作っていない」のかを区別できるようにするためです。
+  会計の確定・支払方法の登録は、窓口の担当者が別の権限で行います。
+</div>
+
 </body>
 </html>

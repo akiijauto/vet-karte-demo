@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>検査｜電子カルテ 画面モック</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="mockbar">
+  <b>画面モック</b>　動くのはページ間のリンクだけです。データはすべて架空です。
+  <a href="index.html">← この取り組みの説明へ</a>
+</div>
+
+<div class="shell">
+  <div class="shell-top">
+    <div class="brand"><div class="name">電子カルテ</div><div class="clinic">サンプル動物病院</div></div>
+    <a class="navbtn" href="list.html"><span class="t">本日の患者</span><span class="s">外来受付</span></a>
+    <a class="navbtn" href="owner.html"><span class="t">検索</span><span class="s">飼主・動物をさがす</span></a>
+    <span class="navbtn" style="color:var(--ink-faint)"><span class="t">新規飼主</span><span class="s">飼主・動物をあたらしく登録</span></span>
+    <span class="navbtn" style="color:var(--ink-faint)"><span class="t">設定</span><span class="s">病院設定ほか</span></span>
+    <span class="searchbox"><input value="飼主名・カナ・カルテNo・電話番号" readonly><span class="go">検索</span></span>
+    <span class="tool off">売上集計</span>
+    <span class="tool off">入院</span>
+    <span class="tool off">DM管理</span>
+    <span class="staff">担当<b>未設定</b></span>
+  </div>
+  <div class="shell-sub">
+    <span class="zoom"><span>−</span><span>100%</span><span>＋</span></span>
+    <span class="tool off">ログアウト</span>
+  </div>
+</div>
+
+<div class="patient">
+  <span class="no">0871-1</span>
+  <span class="nm">クロ<small>　ちゃん</small></span>
+  <span class="meta">架空 太郎　様</span>
+  <span class="meta">猫・雑種／オス（去勢済）／4歳5ヶ月</span>
+  <span class="right"><a class="tool" href="list.html">患者を離す</a></span>
+</div>
+
+<div class="tabs">
+  <a href="owner.html">顧客<span class="s">飼主・動物データ</span></a>
+  <a href="karte.html">診察<span class="s">カルテ</span></a>
+  <a href="exam.html" class="is-current">検査<span class="s">検査値・基準値</span></a>
+  <a href="accounting.html">会計<span class="s">明細・請求</span></a>
+  <div class="right">
+    <span class="btn">検査結果を印刷</span>
+    <span class="btn ghost">検査依頼書</span>
+  </div>
+</div>
+
+<div class="picker">
+  <span class="field"><span class="lb">検査日</span><span class="val">2026/9/5</span><span class="val">09:52</span></span>
+  <span class="lb">検査種別</span>
+  <span class="radio on"><i></i>血液</span>
+  <span class="radio"><i></i>尿</span>
+  <span class="radio"><i></i>糞便</span>
+  <span class="radio"><i></i>画像</span>
+  <span class="field"><span class="lb">検体番号</span><span class="val">260905-B14</span></span>
+  <span class="field"><span class="lb">依頼</span><span class="val">獣医A</span></span>
+  <span class="field"><span class="lb">実施</span><span class="val">院内機器</span></span>
+  <span class="field"><span class="lb">基準値表</span><span class="val wide">猫・成猫（1歳以上）　2026-04版</span></span>
+</div>
+
+<div class="ptitle">血液検査　検体番号 260905-B14（採血 09:52／測定 10:01）</div>
+
+<div class="gridwrap">
+<table class="grid">
+  <thead>
+    <tr><th>項目</th><th class="r">結果</th><th>単位</th><th>基準値</th><th>判定</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>WBC　白血球数</td><td class="r warn">21.4</td><td>×10³/µL</td><td>5.5 〜 19.5</td><td class="c warn">H</td></tr>
+    <tr><td>RBC　赤血球数</td><td class="r">7.85</td><td>×10⁶/µL</td><td>5.0 〜 10.0</td><td class="c"></td></tr>
+    <tr><td>HGB　ヘモグロビン</td><td class="r">11.9</td><td>g/dL</td><td>8.0 〜 15.0</td><td class="c"></td></tr>
+    <tr><td>HCT　ヘマトクリット</td><td class="r">36.2</td><td>%</td><td>24.0 〜 45.0</td><td class="c"></td></tr>
+    <tr><td>PLT　血小板数</td><td class="r">288</td><td>×10³/µL</td><td>150 〜 600</td><td class="c"></td></tr>
+    <tr><td>TP　総蛋白</td><td class="r">7.4</td><td>g/dL</td><td>5.7 〜 8.9</td><td class="c"></td></tr>
+    <tr><td>ALB　アルブミン</td><td class="r warn">2.1</td><td>g/dL</td><td>2.3 〜 3.9</td><td class="c warn">L</td></tr>
+    <tr><td>ALT　アラニンアミノ基転移酵素</td><td class="r warn">168</td><td>U/L</td><td>12 〜 130</td><td class="c warn">H</td></tr>
+    <tr><td>ALP　アルカリホスファターゼ</td><td class="r">42</td><td>U/L</td><td>14 〜 111</td><td class="c"></td></tr>
+    <tr><td>BUN　尿素窒素</td><td class="r">24</td><td>mg/dL</td><td>16 〜 36</td><td class="c"></td></tr>
+    <tr><td>CRE　クレアチニン</td><td class="r">1.4</td><td>mg/dL</td><td>0.8 〜 2.4</td><td class="c"></td></tr>
+    <tr><td>GLU　血糖</td><td class="r">104</td><td>mg/dL</td><td>71 〜 159</td><td class="c"></td></tr>
+    <tr><td>Na　ナトリウム</td><td class="r">151</td><td>mmol/L</td><td>147 〜 156</td><td class="c"></td></tr>
+    <tr class="sum">
+      <td colspan="4">基準値の外に出た項目　<span class="warn">3／13（WBC・ALB・ALT）</span></td>
+      <td class="c warn">要確認</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="picker">
+  <span class="faint">判定（H・L）は、この検査に固定して残した基準値表「猫・成猫 2026-04版」を参照して付けています。</span>
+  <span class="faint">尿・糞便も同じ書式で、それぞれの項目表を使って記録します。</span>
+</div>
+
+<div class="ptitle">画像検査の実施記録</div>
+
+<div class="gridwrap">
+<table class="grid">
+  <thead>
+    <tr><th>種別</th><th>実施日時</th><th>部位</th><th class="r">枚数</th><th>保管先の識別子</th><th>所見</th><th>読影</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>レントゲン</td><td>2026-09-05 10:05</td><td>胸部（腹背・右側面）</td><td class="r">2</td>
+        <td>RX-20260905-0871-1</td><td>心陰影・肺野に異常所見なし</td><td>獣医A</td></tr>
+    <tr><td>エコー</td><td>2026-09-05 10:20</td><td>腹部（肝・腎・膀胱）</td><td class="r">6</td>
+        <td>US-20260905-0871-1</td><td>肝・腎の輪郭は明瞭。膀胱内に沈渣なし</td><td>獣医A</td></tr>
+    <tr class="done"><td>CT</td><td>2026-06-14 09:30</td><td>頭部・頸部</td><td class="r">1,842</td>
+        <td>CT-20260614-0871-1（外部センター）</td><td>撮影のみ。読影は依頼先の報告書</td><td>外部センター</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="picker">
+  <span class="faint">枚数は保管先にある画像の枚数です。カルテが持つのは<b>保管先の識別子だけ</b>で、画像そのものは持ちません。</span>
+</div>
+
+<div class="karte">
+  <div class="krow">
+    <div class="klabel">所見</div>
+    <div class="kbody">
+      <div class="memo">WBC の上昇は、皮膚の炎症が続いていることと矛盾しない。発熱・脱水の所見はなし。
+ALT の上昇は今回が初回。内服の開始時期と重なるため、2週間後の再診時に肝機能のみ再検する。
+ALB の低下は軽度。食欲・体重に変化がないため、まずは再検で推移をみる。
+画像所見に、消化器症状を説明する所見はなし。</div>
+    </div>
+  </div>
+  <div class="krow">
+    <div class="klabel">再検</div>
+    <div class="kbody">
+      <span class="field"><span class="lb">予定日</span><span class="val">2026/9/19</span></span>
+      <span class="field"><span class="lb">項目</span><span class="val wide">ALT・ALB・TP（生化学のみ）</span></span>
+      <span class="field"><span class="lb">絶食</span><span class="val">12時間</span></span>
+      <span class="field"><span class="lb">依頼</span><span class="val">獣医A</span></span>
+      <span class="faint">再検の予定は予約に引き渡します</span>
+      <a class="tool" href="reservation.html">予約を見る</a>
+    </div>
+  </div>
+</div>
+
+<div class="actions">
+  <span class="keys">F5：前回の検査を並べる　F9：参照する基準値表を選ぶ</span>
+  <button>登録</button>
+  <button>再検査依頼</button>
+  <button>印刷</button>
+  <button class="off" disabled>取消</button>
+  <button class="off" disabled>削除</button>
+  <a class="primary" href="karte.html">カルテへ戻る</a>
+  <a href="accounting.html">会計</a>
+  <a href="list.html">外来一覧へ戻る</a>
+</div>
+
+<div class="note">
+  <b>ここでAIに検証させたこと：</b>「基準値の外に出た項目が、<b>必ず判定欄と色の両方に出ること</b>」。
+  片方だけだと、色を見落とした人が異常に気づけません。判定欄が空欄なのに色だけが付いている行、
+  その逆の行も出ないことを条件にしました。<br>
+  <b>基準値は病院ごとに違います。</b>だから判定は、その場で数値を比べて出すのではなく、
+  <b>病院ごとの基準値表を参照して</b>出します。参照した表の版（この検査では「猫・成猫 2026-04版」）は
+  検査結果と一緒に固定して残します。あとから表を入れ替えても、
+  <b>過去の検査の判定が書き換わらない</b>ようにするためです。<br>
+  <b>項目の順序と単位は変えません。</b>検査値は他院の紙と並べて読まれることがあり、
+  並び順が違うだけで読み合わせに時間がかかります。見やすさより、並べて読めることを取りました。<br>
+  <b>画像そのものはカルテに置かず、保管先の識別子だけを持ちます。</b>
+  CT は1検査で1,000〜3,000枚になり、カルテに抱えるとカルテを開くたびに待たされることになるためです。<br>
+  この画面から操作しない機能はグレーで残しています。
+</div>
+
+</body>
+</html>

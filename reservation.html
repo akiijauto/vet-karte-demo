@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>予約｜電子カルテ 画面モック</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="mockbar">
+  <b>画面モック</b>　動くのはページ間のリンクだけです。データはすべて架空です。
+  <a href="index.html">← この取り組みの説明へ</a>
+</div>
+
+<div class="shell">
+  <div class="shell-top">
+    <div class="brand"><div class="name">電子カルテ</div><div class="clinic">サンプル動物病院</div></div>
+    <a class="navbtn" href="list.html"><span class="t">本日の患者</span><span class="s">外来受付</span></a>
+    <a class="navbtn" href="owner.html"><span class="t">検索</span><span class="s">飼主・動物をさがす</span></a>
+    <span class="navbtn" style="color:var(--ink-faint)"><span class="t">新規飼主</span><span class="s">飼主・動物をあたらしく登録</span></span>
+    <span class="navbtn" style="color:var(--ink-faint)"><span class="t">設定</span><span class="s">病院設定ほか</span></span>
+    <span class="searchbox"><input value="飼主名・カナ・カルテNo・電話番号" readonly><span class="go">検索</span></span>
+    <span class="tool off">売上集計</span>
+    <span class="tool off">入院</span>
+    <span class="tool off">DM管理</span>
+    <span class="staff">担当<b>未設定</b></span>
+  </div>
+  <div class="shell-sub">
+    <span class="zoom"><span>−</span><span>100%</span><span>＋</span></span>
+    <span class="tool off">ログアウト</span>
+  </div>
+</div>
+
+<div class="picker">
+  <span class="lb">日付</span>
+  <span class="tool off">← 前日</span>
+  <span class="field"><span class="val">2026/9/5（金）</span></span>
+  <span class="tool off">翌日 →</span>
+  <span class="lb">担当</span>
+  <span class="radio on"><i></i>全員</span>
+  <span class="radio"><i></i>獣医A</span>
+  <span class="radio"><i></i>獣医B</span>
+  <span class="radio"><i></i>看護C</span>
+  <span class="field"><span class="lb">診療時間</span><span class="val">09:00 〜 18:00</span></span>
+  <span class="field"><span class="lb">予約</span><span class="val">22件</span></span>
+</div>
+
+<div class="picker">
+  <span class="lb">種類</span>
+  <span class="kind acc">初</span>初診
+  <span class="kind">再</span>再診
+  <span class="kind">予</span>予防
+  <span class="kind">処</span>処置
+  <span class="kind">ト</span>トリミング
+  <span class="faint">初診は登録と問診に時間がかかり、埋まり方が変わるため、ひと目で分かるようにしています。</span>
+</div>
+
+<div class="ptitle">時間割　2026/9/5（金）　担当：全員</div>
+
+<div class="gridwrap">
+<table class="grid">
+  <thead>
+    <tr><th>時刻</th><th>獣医A</th><th>獣医B</th><th>看護C</th><th>処置室1</th><th>処置室2</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="c">09:00</td>
+      <td class="band">09:00–09:20<br><span class="kind">再</span>0871-1 クロ<br>皮膚の再診</td>
+      <td></td>
+      <td class="band">09:00–09:30<br><span class="kind">処</span>0455-1 ソラ<br>爪切り・耳掃除</td>
+      <td class="band">09:00–09:20<br><span class="kind">再</span>0871-1 クロ<br>皮膚の再診</td>
+      <td class="band">09:00–09:30<br><span class="kind">処</span>0455-1 ソラ<br>爪切り・耳掃除</td>
+    </tr>
+    <tr>
+      <td class="c">09:30</td>
+      <td class="band">09:30–09:50<br><span class="kind">予</span>1024-3 モモ<br>3種混合ワクチン</td>
+      <td class="band">09:30–10:00<br><span class="kind acc">初</span>1190-2 ラン<br>嘔吐</td>
+      <td></td>
+      <td class="band">09:30–09:50<br><span class="kind">予</span>1024-3 モモ<br>3種混合ワクチン</td>
+      <td class="band">09:30–10:00<br><span class="kind acc">初</span>1190-2 ラン<br>嘔吐</td>
+    </tr>
+    <tr>
+      <td class="c">10:00</td>
+      <td class="band" rowspan="2">10:00–10:40<br><span class="kind">予</span>1104-1 あき・1104-2 ふゆ<br>健康診断（2頭・1来院）</td>
+      <td class="band">10:00–10:30<br><span class="kind">再</span>1101-1 むぎ<br>定期の来院</td>
+      <td class="band" rowspan="3">10:00–11:30<br><span class="kind">ト</span>1150-1 ぽて<br>トリミング（全身カット）</td>
+      <td class="band" rowspan="2">10:00–10:40<br><span class="kind">予</span>1104-1 あき・1104-2 ふゆ<br>健康診断（2頭・1来院）</td>
+      <td class="band">10:00–10:30<br><span class="kind">再</span>1101-1 むぎ<br>定期の来院</td>
+    </tr>
+    <tr>
+      <td class="c">10:30</td>
+      <td class="band">10:30–11:00<br><span class="kind acc">初</span>1107-1 つき<br>食欲不振</td>
+      <td class="band">10:30–11:00<br><span class="kind acc">初</span>1107-1 つき<br>食欲不振</td>
+    </tr>
+    <tr>
+      <td class="c">11:00</td>
+      <td class="band">11:00–11:30<br><span class="kind acc">初</span>1110-1 まめ<br>去勢の相談</td>
+      <td class="band">11:00–11:30<br><span class="kind">予</span>1109-1 しょこら<br>フィラリア予防</td>
+      <td class="band">11:00–11:30<br><span class="kind acc">初</span>1110-1 まめ<br>去勢の相談</td>
+      <td class="band">11:00–11:30<br><span class="kind">予</span>1109-1 しょこら<br>フィラリア予防</td>
+    </tr>
+    <tr>
+      <td class="c">11:30</td>
+      <td class="band">11:30–12:00<br><span class="kind">再</span>1116-1 るな<br>体重が減った</td>
+      <td class="band">11:30–12:00<br><span class="kind acc">初</span>1113-1 れもん<br>目やに</td>
+      <td></td>
+      <td class="band">11:30–12:00<br><span class="kind">再</span>1116-1 るな<br>体重が減った</td>
+      <td class="band">11:30–12:00<br><span class="kind acc">初</span>1113-1 れもん<br>目やに</td>
+    </tr>
+    <tr>
+      <td class="c">12:00</td>
+      <td class="c" colspan="5" rowspan="2">12:00–13:00　休診（電話の受付のみ）</td>
+    </tr>
+    <tr>
+      <td class="c">12:30</td>
+    </tr>
+    <tr>
+      <td class="c">13:00</td>
+      <td class="band" rowspan="3">13:00–14:30<br><span class="kind">処</span>1131-1 こむぎ<br>去勢手術</td>
+      <td></td>
+      <td class="band" rowspan="3">13:00–14:30<br><span class="kind">処</span>1131-1 こむぎ<br>去勢手術の介助</td>
+      <td></td>
+      <td class="band" rowspan="3">13:00–14:30<br><span class="kind">処</span>1131-1 こむぎ<br>去勢手術</td>
+    </tr>
+    <tr>
+      <td class="c">13:30</td>
+      <td class="band">13:30–14:00<br><span class="kind">再</span>1121-1 もなか<br>皮膚の再診</td>
+      <td class="band">13:30–14:00<br><span class="kind">再</span>1121-1 もなか<br>皮膚の再診</td>
+    </tr>
+    <tr>
+      <td class="c">14:00</td>
+      <td class="band" rowspan="2">14:00–15:00<br><span class="kind acc">初</span>1140-1 こはく<br>皮膚のできもの</td>
+      <td class="band" rowspan="2">14:00–15:00<br><span class="kind acc">初</span>1140-1 こはく<br>皮膚のできもの</td>
+    </tr>
+    <tr>
+      <td class="c">14:30</td>
+      <td class="band">14:30–15:00<br><span class="kind">再</span>1155-1 くるみ<br>食欲の経過</td>
+      <td></td>
+      <td class="band">14:30–15:00<br><span class="kind">再</span>1155-1 くるみ<br>食欲の経過</td>
+    </tr>
+    <tr>
+      <td class="c">15:00</td>
+      <td class="band">15:00–15:30<br><span class="kind acc">初</span>1168-1 ぷりん<br>目のかゆみ</td>
+      <td></td>
+      <td class="band">15:00–15:30<br><span class="kind">処</span>1145-1 だいふく<br>爪切り</td>
+      <td class="band">15:00–15:30<br><span class="kind acc">初</span>1168-1 ぷりん<br>目のかゆみ</td>
+      <td class="band">15:00–15:30<br><span class="kind">処</span>1145-1 だいふく<br>爪切り</td>
+    </tr>
+    <tr>
+      <td class="c">15:30</td>
+      <td></td>
+      <td class="band">15:30–16:00<br><span class="kind">再</span>1173-1 むく<br>耳の再診</td>
+      <td></td>
+      <td></td>
+      <td class="band">15:30–16:00<br><span class="kind">再</span>1173-1 むく<br>耳の再診</td>
+    </tr>
+    <tr>
+      <td class="c">16:00</td>
+      <td class="band">16:00–16:30<br><span class="kind">再</span>1162-1 まる<br>皮膚の再診</td>
+      <td></td>
+      <td class="band">16:00–16:30<br><span class="kind">処</span>1160-1 ここ<br>耳掃除</td>
+      <td class="band">16:00–16:30<br><span class="kind">再</span>1162-1 まる<br>皮膚の再診</td>
+      <td class="band">16:00–16:30<br><span class="kind">処</span>1160-1 ここ<br>耳掃除</td>
+    </tr>
+    <tr>
+      <td class="c">16:30</td>
+      <td></td>
+      <td class="band">16:30–17:00<br><span class="kind">予</span>1181-1 のあ<br>健康診断</td>
+      <td></td>
+      <td></td>
+      <td class="band">16:30–17:00<br><span class="kind">予</span>1181-1 のあ<br>健康診断</td>
+    </tr>
+    <tr><td class="c">17:00</td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td class="c">17:30</td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td class="c">18:00</td><td></td><td></td><td></td><td></td><td></td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="picker">
+  <span class="faint">空欄が空きです。トリミングは処置室を使わないため、部屋の列には出ません。</span>
+  <span class="faint">1件の予約は、担当の列と処置室の列の<b>両方</b>を占めます。</span>
+</div>
+
+<div class="ptitle">本日の予約一覧　2026/9/5（金）　22件（受付済 4／待合 8／未受付 10）</div>
+
+<div class="gridwrap">
+<table class="grid">
+  <thead>
+    <tr><th>時刻</th><th>カルテNo</th><th>飼主</th><th>動物</th><th>目的</th><th>担当</th><th>状態</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>09:00–09:20</td><td><a href="karte.html">0871-1</a></td><td>架空 太郎</td><td>クロ</td>
+        <td><span class="kind">再</span>皮膚の再診</td><td>獣医A</td><td>診察中</td></tr>
+    <tr><td>09:00–09:30</td><td>0455-1</td><td>架空 三郎</td><td>ソラ</td>
+        <td><span class="kind">処</span>爪切り・耳掃除</td><td>看護C</td><td>処置中</td></tr>
+    <tr><td>09:30–09:50</td><td>1024-3</td><td>架空 花子</td><td>モモ</td>
+        <td><span class="kind">予</span>3種混合ワクチン</td><td>獣医A</td><td>会計待ち</td></tr>
+    <tr><td>09:30–10:00</td><td>1190-2</td><td>架空 次郎</td><td>ラン</td>
+        <td><span class="kind acc">初</span>嘔吐</td><td>獣医B</td><td>検査中</td></tr>
+    <tr><td>10:00–10:40</td><td>1104-1／1104-2</td><td>架空 四郎</td><td>あき／ふゆ</td>
+        <td><span class="kind">予</span>健康診断（2頭・1来院）</td><td>獣医A</td><td>待合</td></tr>
+    <tr><td>10:00–10:30</td><td>1101-1</td><td>架空 五郎</td><td>むぎ</td>
+        <td><span class="kind">再</span>定期の来院</td><td>獣医B</td><td>待合</td></tr>
+    <tr><td>10:00–11:30</td><td>1150-1</td><td>架空 十四</td><td>ぽて</td>
+        <td><span class="kind">ト</span>トリミング（全身カット）</td><td>看護C</td><td>待合</td></tr>
+    <tr><td>10:30–11:00</td><td>1107-1</td><td>架空 六郎</td><td>つき</td>
+        <td><span class="kind acc">初</span>食欲不振</td><td>獣医B</td><td>待合</td></tr>
+    <tr><td>11:00–11:30</td><td>1110-1</td><td>架空 八郎</td><td>まめ</td>
+        <td><span class="kind acc">初</span>去勢の相談</td><td>獣医A</td><td>待合</td></tr>
+    <tr><td>11:00–11:30</td><td>1109-1</td><td>架空 七郎</td><td>しょこら</td>
+        <td><span class="kind">予</span>フィラリア予防</td><td>獣医B</td><td>待合</td></tr>
+    <tr><td>11:30–12:00</td><td>1116-1</td><td>架空 十郎</td><td>るな</td>
+        <td><span class="kind">再</span>体重が減った</td><td>獣医A</td><td>待合</td></tr>
+    <tr><td>11:30–12:00</td><td>1113-1</td><td>架空 九郎</td><td>れもん</td>
+        <td><span class="kind acc">初</span>目やに</td><td>獣医B</td><td>待合</td></tr>
+    <tr><td>13:00–14:30</td><td>1131-1</td><td>架空 十五</td><td>こむぎ</td>
+        <td><span class="kind">処</span>去勢手術</td><td>獣医A・看護C</td><td>未受付</td></tr>
+    <tr><td>13:30–14:00</td><td>1121-1</td><td>架空 十六</td><td>もなか</td>
+        <td><span class="kind">再</span>皮膚の再診</td><td>獣医B</td><td>未受付</td></tr>
+    <tr><td>14:00–15:00</td><td>1140-1</td><td>架空 十七</td><td>こはく</td>
+        <td><span class="kind acc">初</span>皮膚のできもの</td><td>獣医B</td><td>未受付</td></tr>
+    <tr><td>14:30–15:00</td><td>1155-1</td><td>架空 十八</td><td>くるみ</td>
+        <td><span class="kind">再</span>食欲の経過</td><td>獣医A</td><td>未受付</td></tr>
+    <tr><td>15:00–15:30</td><td>1168-1</td><td>架空 二十</td><td>ぷりん</td>
+        <td><span class="kind acc">初</span>目のかゆみ</td><td>獣医A</td><td>未受付</td></tr>
+    <tr><td>15:00–15:30</td><td>1145-1</td><td>架空 十九</td><td>だいふく</td>
+        <td><span class="kind">処</span>爪切り</td><td>看護C</td><td>未受付</td></tr>
+    <tr><td>15:30–16:00</td><td>1173-1</td><td>架空 二十一</td><td>むく</td>
+        <td><span class="kind">再</span>耳の再診</td><td>獣医B</td><td>未受付</td></tr>
+    <tr><td>16:00–16:30</td><td>1162-1</td><td>架空 二十三</td><td>まる</td>
+        <td><span class="kind">再</span>皮膚の再診</td><td>獣医A</td><td>未受付</td></tr>
+    <tr><td>16:00–16:30</td><td>1160-1</td><td>架空 二十二</td><td>ここ</td>
+        <td><span class="kind">処</span>耳掃除</td><td>看護C</td><td>未受付</td></tr>
+    <tr><td>16:30–17:00</td><td>1181-1</td><td>架空 二十四</td><td>のあ</td>
+        <td><span class="kind">予</span>健康診断</td><td>獣医B</td><td>未受付</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="actions">
+  <span class="keys">時間割のセルを選ぶと、その担当とその部屋が両方空いている時間だけが候補に出ます</span>
+  <button>新規予約</button>
+  <button>変更</button>
+  <button class="off" disabled>取消</button>
+  <button class="off" disabled>印刷</button>
+  <a class="primary" href="list.html">外来一覧へ</a>
+  <a href="karte.html">カルテ</a>
+  <a href="owner.html">顧客</a>
+</div>
+
+<div class="note">
+  <b>ここでAIに検証させたこと：</b>「1つの枠に2件が入らないこと」を、<b>担当と処置室の両方</b>で確かめました。
+  人が空いていても部屋が埋まっていれば受けられないため、どちらか片方だけを見ても足りません。
+  1件の予約は担当の列と部屋の列の両方を占めるので、
+  <b>どちらか一方でも重なったら受け付けない</b>ことを条件にしています。<br>
+  <b>予約は「枠」ではなく「時間の帯」で持ちます。</b>
+  爪切りは20分、2頭の健康診断は40分、全身のトリミングは90分、手術は1時間半と、所要時間が種類ごとに違います。
+  固定の枠に押し込むと、20分で終わる予防にも30分を使うことになり、1日に受けられる頭数が実際より少なくなります。
+  表の目盛りは30分ですが、予約そのものは<b>開始と終了の時刻</b>で持ち、帯がかかる行を占める形で描いています。<br>
+  <b>同じ飼主の複数頭は、まとめて1つの来院として扱います。</b>
+  10:00 の 1104-1 あき／1104-2 ふゆ がその例で、2頭を1つの帯にしています。
+  別々に予約すると受付で2回呼ぶことになり、待合で同じ飼主を2度立たせることになります。<br>
+  昼の休診帯を表に出しているのは、電話で「12時半は空いていますか」と聞かれたときに、
+  <b>空きではなく休診だと即答できる</b>ようにするためです。<br>
+  この画面から操作しない機能はグレーで残しています。
+</div>
+
+</body>
+</html>

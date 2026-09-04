@@ -3,68 +3,137 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>外来一覧｜電子カルテ 画面モック</title>
+<title>外来受付｜電子カルテ 画面モック</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="mockbar">
-  <b>画面モック</b>　動くシステムではありません。データはすべて架空です。
-  <a href="index.html">← 説明ページへ戻る</a>
+  <b>画面モック</b>　動くのはページ間のリンクだけです。データはすべて架空です。
+  <a href="index.html">← この取り組みの説明へ</a>
 </div>
 
-<div class="wrap">
-
-  <div class="app">
-    <div class="app-bar">
-      電子カルテシステム — 外来一覧
-      <span class="chip">モック / 架空データ</span>
-      <span class="right"><a href="menu.html">メニュー</a></span>
-    </div>
-    <div class="app-body">
-
-      <p class="crumb"><a href="menu.html">メニュー</a><span>›</span>外来一覧</p>
-
-      <table>
-        <thead>
-          <tr><th>受付</th><th>カルテNo</th><th>飼主名</th><th>動物名</th><th>品種</th>
-              <th>診療目的</th><th>担当</th><th>状況</th><th></th></tr>
-        </thead>
-        <tbody>
-          <tr class="clickable">
-            <td>09:15</td><td>1024-3</td><td>架空 花子</td><td>モモ</td><td>ミニチュア・ダックスフンド</td>
-            <td>予防接種</td><td>獣医A</td><td><span class="pill done">会計済</span></td>
-            <td><a href="accounting.html">会計を見る</a></td>
-          </tr>
-          <tr class="clickable">
-            <td>09:40</td><td>0871-1</td><td>架空 太郎</td><td>クロ</td><td>雑種（猫）</td>
-            <td>再診・皮膚</td><td>獣医A</td><td><span class="pill now">診察中</span></td>
-            <td><a href="karte.html">カルテを開く</a></td>
-          </tr>
-          <tr>
-            <td>10:05</td><td>1190-2</td><td>架空 次郎</td><td>ラン</td><td>トイ・プードル</td>
-            <td>初診・嘔吐</td><td>獣医B</td><td><span class="pill wait">待機</span></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>10:20</td><td>0455-1</td><td>架空 三郎</td><td>ソラ</td><td>柴</td>
-            <td>爪切り・肛門腺</td><td>看護C</td><td><span class="pill wait">待機</span></td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div class="note">
-        <b>ここでAIに検証させたこと：</b>「受付済みの動物が、担当・目的・状況のいずれかを欠いたまま次の画面へ進めないこと」。
-        状況の値は<b>取りうる種類を先に列挙</b>し、その集合の外の値が入らないことを条件にしました。<br>
-        <b>このモックで動くのは「カルテを開く」「会計を見る」のリンクだけ</b>です。並べ替え・絞り込み・受付の登録は実装前です。
-      </div>
-
-    </div>
+<div class="shell">
+  <div class="shell-top">
+    <div class="brand"><div class="name">電子カルテ</div><div class="clinic">サンプル動物病院</div></div>
+    <a class="navbtn is-current" href="list.html"><span class="t">本日の患者</span><span class="s">外来受付</span></a>
+    <a class="navbtn" href="owner.html"><span class="t">検索</span><span class="s">飼主・動物をさがす</span></a>
+    <span class="navbtn" style="color:var(--ink-faint)"><span class="t">新規飼主</span><span class="s">飼主・動物をあたらしく登録</span></span>
+    <span class="navbtn" style="color:var(--ink-faint)"><span class="t">設定</span><span class="s">病院設定ほか</span></span>
+    <span class="searchbox"><input value="飼主名・カナ・カルテNo・電話番号" readonly><span class="go">検索</span></span>
+    <a class="tool" href="sales.html">売上集計</a>
+    <a class="tool" href="ward.html">入院</a>
+    <span class="tool off">DM管理</span>
+    <span class="staff">担当<b>未設定</b></span>
   </div>
-
-  <p><a href="karte.html">→ カルテ画面へ</a>　/　<a href="menu.html">メニューへ戻る</a></p>
-
+  <div class="shell-sub">
+    <span class="zoom"><span>−</span><span>100%</span><span>＋</span></span>
+    <span class="tool off">ログアウト</span>
+  </div>
 </div>
+
+<div class="bigtabs">
+  <a href="list.html" class="is-current">外来受付</a>
+  <a href="ward.html">入院</a>
+  <span class="off">ホテル</span>
+  <span class="off">手術</span>
+  <span class="off">トリミング</span>
+  <span class="off">備考・その他</span>
+</div>
+
+<div class="fnrow">
+  <div class="fngroup">
+    <span class="off">診察</span><span class="off">会計</span><span class="off">調剤</span>
+    <span class="off">検査</span><span class="off">処置</span>
+  </div>
+  <div class="fngroup">
+    <span class="off">入院/ホ</span><span class="off">手術</span><span class="off">トリミング</span><span class="off">備考</span>
+  </div>
+  <div class="fngroup">
+    <span class="off">顧客</span><a href="reservation.html">予約</a>
+    <a href="karte.html">カルテ</a>
+    <a href="accounting.html">会計</a>
+  </div>
+  <div class="fnnote">
+    完了表示 3<br>
+    <span style="color:var(--ink-faint)">完了全削除／完了削除</span>
+  </div>
+</div>
+
+<div class="gridwrap">
+<table class="grid">
+  <thead>
+    <tr>
+      <th>No</th><th>複</th><th>カルテNo</th><th>飼主名</th><th>品種</th><th>動物名</th>
+      <th>受付日時</th><th>オーナー目的</th><th>診療目的</th><th>状況</th><th>状況内容</th>
+      <th>伝言</th><th>調剤</th><th>証明</th><th>担当</th><th>室</th>
+      <th>カルテ日付</th><th>カルテ時刻</th><th>予約開始</th><th>予約終了</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td class="c">1</td><td></td><td><a href="karte.html">0871-1</a></td><td>架空 太郎</td><td>雑種（猫）</td><td>クロ</td>
+        <td>2026-09-05 09:15</td><td>皮膚を痒がる</td><td>再診</td><td>診察中</td><td></td>
+        <td></td><td></td><td></td><td>獣医A</td><td class="c">1</td><td>2026-09-05</td><td>09:15</td><td>09:00</td><td>09:20</td></tr>
+    <tr><td class="c">2</td><td></td><td>1024-3</td><td>架空 花子</td><td>ミニチュア・ダックスフンド</td><td>モモ</td>
+        <td>2026-09-05 09:20</td><td>予防接種</td><td>予防</td><td>会計待ち</td><td></td>
+        <td></td><td></td><td>○</td><td>獣医A</td><td class="c">2</td><td>2026-09-05</td><td>09:22</td><td>09:30</td><td>09:50</td></tr>
+    <tr><td class="c">3</td><td></td><td>1190-2</td><td>架空 次郎</td><td>トイ・プードル</td><td>ラン</td>
+        <td>2026-09-05 09:35</td><td>吐いた</td><td>初診</td><td>検査中</td><td>血液・レントゲン</td>
+        <td></td><td></td><td></td><td>獣医B</td><td class="c">3</td><td>2026-09-05</td><td>09:38</td><td>09:30</td><td>10:00</td></tr>
+    <tr><td class="c">4</td><td></td><td>0455-1</td><td>架空 三郎</td><td>柴</td><td>ソラ</td>
+        <td>2026-09-05 09:40</td><td>爪切り・耳掃除</td><td>処置</td><td>処置中</td><td></td>
+        <td></td><td></td><td></td><td>看護C</td><td class="c">1</td><td></td><td></td><td>09:00</td><td>09:30</td></tr>
+    <tr><td class="c">5</td><td class="c">複</td><td>1104-1</td><td>架空 四郎</td><td>ノルウェージャンフォレストキャット</td><td>あき</td>
+        <td>2026-09-05 09:50</td><td>健康診断</td><td>予防</td><td>待合</td><td></td>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>10:00</td><td>10:40</td></tr>
+    <tr><td class="c">6</td><td class="c">複</td><td>1104-2</td><td>架空 四郎</td><td>ラグドール</td><td>ふゆ</td>
+        <td>2026-09-05 09:50</td><td>健康診断</td><td>予防</td><td>待合</td><td></td>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>10:00</td><td>10:40</td></tr>
+    <tr><td class="c">7</td><td></td><td>1101-1</td><td>架空 五郎</td><td>チワワ</td><td>むぎ</td>
+        <td>2026-09-05 10:00</td><td>定期の来院</td><td>再診</td><td>待合</td><td></td>
+        <td>○</td><td></td><td></td><td></td><td></td><td></td><td></td><td>10:00</td><td>10:30</td></tr>
+    <tr><td class="c">8</td><td></td><td>1107-1</td><td>架空 六郎</td><td>ミシシッピアカミミガメ</td><td>つき</td>
+        <td>2026-09-05 10:05</td><td>食欲不振</td><td>初診</td><td>待合</td><td></td>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>10:30</td><td>11:00</td></tr>
+    <tr><td class="c">9</td><td></td><td>1109-1</td><td>架空 七郎</td><td>ラブラドール・レトリーバー</td><td>しょこら</td>
+        <td>2026-09-05 10:10</td><td>フィラリア予防</td><td>予防</td><td>待合</td><td></td>
+        <td></td><td>○</td><td></td><td></td><td></td><td></td><td></td><td>11:00</td><td>11:30</td></tr>
+    <tr><td class="c">10</td><td></td><td>1110-1</td><td>架空 八郎</td><td>フレンチ・ブルドッグ</td><td>まめ</td>
+        <td>2026-09-05 10:15</td><td>去勢の相談</td><td>初診</td><td>待合</td><td></td>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>11:00</td><td>11:30</td></tr>
+    <tr><td class="c">11</td><td></td><td>1113-1</td><td>架空 九郎</td><td>ゴールデン・レトリーバー</td><td>れもん</td>
+        <td>2026-09-05 10:25</td><td>目やに</td><td>初診</td><td>待合</td><td></td>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>11:30</td><td>12:00</td></tr>
+    <tr><td class="c">12</td><td></td><td>1116-1</td><td>架空 十郎</td><td>スタンダード・プードル</td><td>るな</td>
+        <td>2026-09-05 10:35</td><td>体重が減った</td><td>再診</td><td>待合</td><td></td>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>11:30</td><td>12:00</td></tr>
+    <tr class="done"><td class="c">13</td><td></td><td>1111-1</td><td>架空 十一</td><td>アメリカンショートヘア</td><td>しろ</td>
+        <td>2026-09-05 08:40</td><td>抜糸</td><td>処置</td><td>完了</td><td></td>
+        <td></td><td></td><td></td><td>獣医A</td><td class="c">2</td><td>2026-09-05</td><td>08:52</td><td></td><td></td></tr>
+    <tr class="done"><td class="c">14</td><td></td><td>1118-1</td><td>架空 十二</td><td>雑種（犬）</td><td>はる</td>
+        <td>2026-09-05 08:50</td><td>投薬の受け取り</td><td>再診</td><td>完了</td><td></td>
+        <td></td><td>○</td><td></td><td>獣医B</td><td class="c">1</td><td>2026-09-05</td><td>08:58</td><td></td><td></td></tr>
+    <tr class="done"><td class="c">15</td><td></td><td>1120-1</td><td>架空 十三</td><td>ネザーランドドワーフ</td><td>りく</td>
+        <td>2026-09-05 09:00</td><td>爪切り</td><td>処置</td><td>完了</td><td></td>
+        <td></td><td></td><td></td><td>看護C</td><td class="c">3</td><td>2026-09-05</td><td>09:06</td><td></td><td></td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="actions">
+  <span class="keys">上の行の「カルテNo」または右上の機能ボタンから、カルテ・会計へ進みます</span>
+  <a class="primary" href="karte.html">カルテを開く</a>
+  <a href="accounting.html">会計を開く</a>
+  <a href="owner.html">顧客</a>
+</div>
+
+<div class="note">
+  <b>ここでAIに検証させたこと：</b>「受付済みの動物が、担当・目的・状況のいずれかを欠いたまま次の画面へ進めないこと」。
+  状況の値は<b>取りうる種類を先に列挙</b>し、その集合の外の値が入らないことを条件にしました。<br>
+  <b>押せない機能はグレーで残しています。</b>消してしまうと「無い」のか「まだ作っていない」のかが区別できず、
+  毎日同じ位置を押している人にとっては並びが変わること自体が負担になるためです。<br>
+  完了した行は下に薄く残します。「今日は何件終わったか」が一覧のまま分かるようにするためです。
+</div>
+
 </body>
 </html>

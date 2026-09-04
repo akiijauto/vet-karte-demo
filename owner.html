@@ -3,61 +3,166 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>飼い主・動物｜電子カルテ 画面モック</title>
+<title>顧客（飼主・動物データ）｜電子カルテ 画面モック</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="mockbar">
-  <b>画面モック</b>　動くシステムではありません。データはすべて架空です。
-  <a href="index.html">← 説明ページへ戻る</a>
+  <b>画面モック</b>　動くのはページ間のリンクだけです。データはすべて架空です。
+  <a href="index.html">← この取り組みの説明へ</a>
 </div>
 
-<div class="wrap">
+<div class="shell">
+  <div class="shell-top">
+    <div class="brand"><div class="name">電子カルテ</div><div class="clinic">サンプル動物病院</div></div>
+    <a class="navbtn" href="list.html"><span class="t">本日の患者</span><span class="s">外来受付</span></a>
+    <a class="navbtn is-current" href="owner.html"><span class="t">検索</span><span class="s">飼主・動物をさがす</span></a>
+    <span class="navbtn" style="color:var(--ink-faint)"><span class="t">新規飼主</span><span class="s">飼主・動物をあたらしく登録</span></span>
+    <span class="navbtn" style="color:var(--ink-faint)"><span class="t">設定</span><span class="s">病院設定ほか</span></span>
+    <span class="searchbox"><input value="飼主名・カナ・カルテNo・電話番号" readonly><span class="go">検索</span></span>
+    <a class="tool" href="sales.html">売上集計</a>
+    <a class="tool" href="ward.html">入院</a>
+    <span class="tool off">DM管理</span>
+    <span class="staff">担当<b>未設定</b></span>
+  </div>
+  <div class="shell-sub">
+    <span class="zoom"><span>−</span><span>100%</span><span>＋</span></span>
+    <span class="tool off">ログアウト</span>
+  </div>
+</div>
 
-  <div class="app">
-    <div class="app-bar">
-      電子カルテシステム — 飼い主・動物
-      <span class="chip">モック / 架空データ</span>
-      <span class="right"><a href="menu.html">メニュー</a></span>
-    </div>
-    <div class="app-body">
+<div class="patient">
+  <span class="no">0871-1</span>
+  <span class="nm">クロ<small>　ちゃん</small></span>
+  <span class="meta">架空 太郎　様</span>
+  <span class="meta">猫・雑種／オス（去勢済）／4歳5ヶ月</span>
+  <span class="right"><a class="tool" href="list.html">患者を離す</a></span>
+</div>
 
-      <p class="crumb"><a href="menu.html">メニュー</a><span>›</span>飼い主・動物</p>
+<div class="tabs">
+  <a href="owner.html" class="is-current">顧客<span class="s">飼主・動物データ</span></a>
+  <a href="karte.html">診察<span class="s">カルテ</span></a>
+  <a href="exam.html">検査<span class="s">検査値・基準値</span></a>
+  <a href="accounting.html">会計<span class="s">明細・請求</span></a>
+  <div class="right">
+    <span class="btn">飼主票を印刷</span>
+    <span class="btn ghost">動物票</span>
+  </div>
+</div>
 
-      <table style="margin-bottom:14px">
-        <tr><th style="width:9em">飼主コード</th><td>0871</td><th style="width:7em">氏名</th><td>架空 太郎</td></tr>
-        <tr><th>連絡先</th><td>000-0000-0000（架空）</td><th>登録日</th><td>2021-05-02</td></tr>
-      </table>
+<div class="panels">
 
-      <h3>登録されている動物</h3>
-      <table>
-        <thead><tr><th style="width:7em">カルテNo</th><th>動物名</th><th>種・品種</th>
-                   <th>生年月日</th><th>性別</th><th>最終来院</th><th></th></tr></thead>
-        <tbody>
-          <tr class="clickable">
-            <td>0871-1</td><td>クロ</td><td>猫・雑種</td><td>2021-04-12</td><td>オス（去勢済）</td>
-            <td>2026-09-05</td><td><a href="karte.html">カルテを開く</a></td>
-          </tr>
-          <tr>
-            <td>0871-2</td><td>シロ</td><td>猫・雑種</td><td>2023-08-30</td><td>メス（避妊済）</td>
-            <td>2026-06-14</td><td></td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div class="note">
-        <b>ここでAIに検証させたこと：</b>「1人の飼い主に複数の動物がぶら下がる形が、どの画面でも崩れないこと」。
-        飼い主と動物を<b>別のものとして扱う</b>と決めたうえで、カルテ番号が
-        「飼主コード - 連番」で一意に決まることを条件にしました。<br>
-        このモックで動くのは「カルテを開く」のリンクだけです。検索・新規登録・編集は実装前です。
-      </div>
-
+  <div class="panel">
+    <div class="ptitle">飼主情報</div>
+    <div class="pbody">
+      <span class="field"><span class="lb">飼主コード</span><span class="val">0871</span></span>
+      <span class="field"><span class="lb">氏名</span><span class="val">架空 太郎</span></span>
+      <span class="field"><span class="lb">カナ</span><span class="val">カクウ タロウ</span></span>
+      <span class="kbreak"></span>
+      <span class="field"><span class="lb">職業</span><span class="val empty">　</span></span>
+      <span class="field"><span class="lb">紹介者</span><span class="val empty">　</span></span>
+      <span class="field"><span class="lb">登録日</span><span class="val">2022/5/10</span></span>
+      <span class="kbreak"></span>
+      <span class="lb">区分</span>
+      <span class="radio on"><i></i>一般</span>
+      <span class="radio"><i></i>紹介</span>
+      <span class="radio"><i></i>職員</span>
+      <span class="field"><span class="lb">担当</span><span class="val">獣医A</span></span>
     </div>
   </div>
 
-  <p><a href="menu.html">← メニューへ戻る</a></p>
+  <div class="panel">
+    <div class="ptitle">連絡先</div>
+    <div class="pbody">
+      <span class="field"><span class="lb">〒</span><span class="val">000-0000</span></span>
+      <span class="field"><span class="lb">住所</span><span class="val wide">サンプル県サンプル市サンプル町1-2-3　サンプルハイツ101</span></span>
+      <span class="kbreak"></span>
+      <span class="field"><span class="lb">電話</span><span class="val">000-0000-0000</span></span>
+      <span class="field"><span class="lb">携帯</span><span class="val">000-0000-0000</span></span>
+      <span class="field"><span class="lb">メール</span><span class="val empty">　</span></span>
+      <span class="kbreak"></span>
+      <span class="lb">DM送付</span>
+      <span class="radio on"><i></i>可</span>
+      <span class="radio"><i></i>不可</span>
+      <span class="faint">送付の可否はここで持ち、宛名の出力は DM管理 で行う</span>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="ptitle">登録されている動物（2頭）</div>
+    <div class="gridwrap">
+    <table class="grid">
+      <thead>
+        <tr><th>カルテNo</th><th>動物名</th><th>種・品種</th><th>性別</th>
+            <th>生年月日</th><th>年令</th><th class="r">体重</th><th>最終来院</th><th></th></tr>
+      </thead>
+      <tbody>
+        <tr><td>0871-1</td><td>クロ</td><td>猫・雑種</td><td>オス（去勢済）</td>
+            <td>2022-04-02</td><td>4歳5ヶ月</td><td class="r">4.20</td><td>2026-09-05</td>
+            <td><a href="karte.html">カルテ</a></td></tr>
+        <tr><td>0871-2</td><td>シロ</td><td>猫・雑種</td><td>メス（避妊済）</td>
+            <td>2023-08-30</td><td>3歳0ヶ月</td><td class="r">3.65</td><td>2026-06-14</td>
+            <td class="faint">カルテ</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="pbody">
+      <span class="faint">カルテNo は「飼主コード - 連番」。動物を追加すると 0871-3 が採番されます。</span>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="ptitle">来院履歴</div>
+    <div class="gridwrap">
+    <table class="grid">
+      <thead>
+        <tr><th>来院日</th><th>動物</th><th>科</th><th>区分</th><th>内容</th><th>担当</th><th>会計</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>2026-09-05</td><td>クロ</td><td>皮</td><td>再診</td>
+            <td>アトピー性皮膚炎　外用薬・内服</td><td>獣医A</td><td class="warn">未確定</td></tr>
+        <tr><td>2026-08-21</td><td>クロ</td><td>皮</td><td>初診</td>
+            <td>皮膚炎の疑い　投薬開始</td><td>獣医A</td><td>済</td></tr>
+        <tr><td>2026-06-14</td><td>シロ</td><td>内</td><td>予防</td>
+            <td>ワクチン（3種混合）</td><td>獣医B</td><td>済</td></tr>
+        <tr><td>2026-05-30</td><td>クロ</td><td>内</td><td>予防</td>
+            <td>ワクチン（3種混合）</td><td>獣医B</td><td>済</td></tr>
+        <tr><td>2025-11-08</td><td>クロ</td><td>外</td><td>処置</td>
+            <td>爪切り・耳掃除</td><td>看護C</td><td>済</td></tr>
+        <tr><td>2025-06-20</td><td>クロ</td><td>耳</td><td>再診</td>
+            <td>外耳炎（右）</td><td>獣医A</td><td>済</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="pbody">
+      <span class="faint">2頭ぶんを1つの時系列で並べています（飼主単位の来院履歴）。</span>
+    </div>
+  </div>
 
 </div>
+
+<div class="actions">
+  <span class="keys">飼主と動物は別のものとして持ち、カルテNo で結びつけています</span>
+  <button class="off" disabled>飼主を修正</button>
+  <button class="off" disabled>動物を追加</button>
+  <button class="off" disabled>統合</button>
+  <button class="off" disabled>DM対象</button>
+  <a class="primary" href="karte.html">カルテを開く</a>
+  <a href="accounting.html">会計</a>
+  <a href="list.html">外来一覧へ戻る</a>
+</div>
+
+<div class="note">
+  <b>ここでAIに検証させたこと：</b>「1人の飼い主に複数の動物がぶら下がる形が、どの画面でも崩れないこと」。<br>
+  飼主と動物を<b>別のものとして扱う</b>と決めたうえで、
+  <b>カルテNo が「飼主コード - 連番」で一意に決まること</b>を条件にしました。
+  この条件があると、動物を1頭追加したとき・飼主の連絡先を変えたとき・
+  同じ飼主の2頭が同じ日に来院したときに、<b>どの画面でどちらの動物を指しているかが機械的に確かめられます</b>
+  （外来一覧の 1104-1／1104-2 が、その同日2頭の例です）。<br>
+  押せない機能はグレーで残しています。「無い」のか「まだ作っていない」のかを区別できるようにするためです。
+  検索・新規登録・編集・統合は、この画面からは操作しません。
+</div>
+
 </body>
 </html>
