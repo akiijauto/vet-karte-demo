@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>動物病院向け電子カルテ — 公開デモ</title>
+<meta name="description" content="AIエージェントで単独開発した電子カルテの公開デモ。主眼は実装ではなく、AIの生成物が業務要件を満たすかを検証させる指示設計に置いた。">
+<style>
+  :root{
+    --bg:#f5f6f8; --panel:#fff; --ink:#1a1d21; --muted:#6b7280; --line:#dfe3e8;
+    --accent:#1f5f8b; --accent-weak:#e8f0f7; --warn:#b45309; --warn-bg:#fff8e6;
+    --bad:#b3261e; --bad-bg:#fdecea; --ok:#1a7a3c; --ok-bg:#e8f6ed;
+    --radius:10px; color-scheme:light dark;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{ --bg:#15171a; --panel:#1e2126; --ink:#e8eaed; --muted:#9aa2ad; --line:#333941;
+           --accent:#7fb3d5; --accent-weak:#1d2c38; --warn:#e0b050; --warn-bg:#2b2415;
+           --bad:#f08b82; --bad-bg:#2e1a18; --ok:#7fd0a0; --ok-bg:#152a1e; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font:15px/1.75 -apple-system,"Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo","Noto Sans JP",sans-serif}
+  .wrap{max-width:1080px;margin:0 auto;padding:28px 20px 72px}
+
+  .banner{background:var(--warn-bg);border:1px solid var(--warn);border-radius:var(--radius);
+          padding:12px 16px;margin-bottom:22px;font-size:14px}
+  .banner b{color:var(--warn)}
+
+  header h1{font-size:26px;margin:0 0 6px;letter-spacing:.01em}
+  header .sub{color:var(--muted);margin:0 0 18px;font-size:14.5px}
+
+  .lead{background:var(--accent-weak);border-left:4px solid var(--accent);
+        padding:14px 18px;border-radius:0 var(--radius) var(--radius) 0;margin-bottom:26px}
+  .lead p{margin:0 0 8px}
+  .lead p:last-child{margin:0}
+
+  h2{font-size:18px;margin:34px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--line)}
+  h3{font-size:15.5px;margin:22px 0 8px;color:var(--accent)}
+
+  /* --- 画面モック --- */
+  .app{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--panel);
+       box-shadow:0 1px 3px rgba(0,0,0,.06)}
+  .app-bar{background:var(--accent);color:#fff;padding:9px 14px;font-size:13.5px;font-weight:700;
+           display:flex;align-items:center;gap:10px}
+  .app-bar .chip{background:rgba(255,255,255,.2);padding:1px 8px;border-radius:20px;font-weight:400;font-size:12px}
+  .tabs{display:flex;gap:2px;background:var(--line);padding:0}
+  .tabs button{flex:0 0 auto;border:0;background:var(--panel);color:var(--muted);
+               padding:9px 16px;font:inherit;font-size:13.5px;cursor:pointer}
+  .tabs button[aria-selected="true"]{color:var(--ink);font-weight:700;box-shadow:inset 0 -3px 0 var(--accent)}
+  .screen{padding:16px;display:none}
+  .screen[data-active="true"]{display:block}
+
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:var(--accent-weak);font-weight:700;white-space:nowrap}
+  td.num{text-align:right;font-variant-numeric:tabular-nums}
+  tr.total td{font-weight:700;background:var(--accent-weak)}
+
+  .pill{display:inline-block;padding:1px 8px;border-radius:20px;font-size:12px;border:1px solid}
+  .pill.wait{color:var(--warn);border-color:var(--warn);background:var(--warn-bg)}
+  .pill.done{color:var(--ok);border-color:var(--ok);background:var(--ok-bg)}
+  .pill.now{color:var(--accent);border-color:var(--accent);background:var(--accent-weak)}
+
+  .vitals{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:14px}
+  .vital{border:1px solid var(--line);border-radius:8px;padding:9px 11px;background:var(--bg)}
+  .vital .k{font-size:12px;color:var(--muted)}
+  .vital .v{font-size:19px;font-weight:700;font-variant-numeric:tabular-nums}
+  .vital .v small{font-size:12px;font-weight:400;color:var(--muted)}
+
+  .note{background:var(--bg);border:1px dashed var(--line);border-radius:8px;
+        padding:11px 14px;margin-top:14px;font-size:13.5px;color:var(--muted)}
+  .note b{color:var(--ink)}
+
+  .finding{border:1px solid var(--line);border-left:4px solid var(--bad);border-radius:0 8px 8px 0;
+           padding:14px 18px;margin:16px 0;background:var(--panel)}
+  .finding h3{margin-top:0;color:var(--bad)}
+  .finding dl{margin:0;display:grid;grid-template-columns:6.5em 1fr;gap:5px 12px;font-size:14px}
+  .finding dt{color:var(--muted);font-weight:700}
+  .finding dd{margin:0}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:760px){.grid2{grid-template-columns:1fr}}
+
+  .card{border:1px solid var(--line);border-radius:var(--radius);padding:14px 18px;background:var(--panel)}
+  .card h3{margin-top:0}
+
+  footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);
+         color:var(--muted);font-size:13px}
+  code{background:var(--bg);border:1px solid var(--line);padding:1px 5px;border-radius:4px;font-size:12.5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="banner">
+  <b>これは公開用のデモです。</b>
+  実際に動いているシステムではなく、画面と設計判断を見ていただくために作った静的なページです。
+  表示しているのは<b>すべて架空のデータ</b>で、実在する動物病院・飼い主・動物の情報は一切含みません。
+  通信も行いません（外部への接続ゼロ）。
+</div>
+
+<header>
+  <h1>動物病院向け 電子カルテ・売上管理システム</h1>
+  <p class="sub">AIエージェントを用いて単独で設計・開発した業務システム（評価版）の公開デモ</p>
+</header>
+
+<div class="lead">
+  <p><b>主眼は実装ではありません。</b>「AIの生成物が業務要件を満たすかを、どう検証させるか」という<b>指示設計</b>に置いています。</p>
+  <p>受付から会計までの各段階で<b>「何が満たされていれば正しいか」を先に定義</b>し、AIに自己検証させたうえで人が確認する手順にしました。
+  金額の算定・計上に関わる箇所は、AIの出力をそのまま採用せず<b>検算が通ることを採用条件</b>としています。</p>
+  <p>ドメインは獣医療ですが、論点は「AIに業務システムを作らせる際、品質をどう担保するか」です。
+  これは経理領域で一貫して取っている<b>「AIは案を出すまで、確定は必ず人が行う」</b>という設計思想と同じものです。</p>
+</div>
+
+<h2>画面</h2>
+
+<div class="app">
+  <div class="app-bar">
+    電子カルテシステム
+    <span class="chip">デモ / 架空データ</span>
+  </div>
+  <div class="tabs" role="tablist">
+    <button role="tab" aria-selected="true"  data-target="s1">外来受付</button>
+    <button role="tab" aria-selected="false" data-target="s2">カルテ</button>
+    <button role="tab" aria-selected="false" data-target="s3">会計</button>
+  </div>
+
+  <!-- 1. 外来受付 -->
+  <section class="screen" id="s1" data-active="true">
+    <table>
+      <thead>
+        <tr><th>受付</th><th>カルテNo</th><th>飼主名</th><th>動物名</th><th>品種</th>
+            <th>診療目的</th><th>担当</th><th>状況</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>09:15</td><td>1024-3</td><td>架空 花子</td><td>モモ</td><td>ミニチュア・ダックスフンド</td>
+            <td>予防接種</td><td>獣医A</td><td><span class="pill done">会計済</span></td></tr>
+        <tr><td>09:40</td><td>0871-1</td><td>架空 太郎</td><td>クロ</td><td>雑種（猫）</td>
+            <td>再診・皮膚</td><td>獣医A</td><td><span class="pill now">診察中</span></td></tr>
+        <tr><td>10:05</td><td>1190-2</td><td>架空 次郎</td><td>ラン</td><td>トイ・プードル</td>
+            <td>初診・嘔吐</td><td>獣医B</td><td><span class="pill wait">待機</span></td></tr>
+        <tr><td>10:20</td><td>0455-1</td><td>架空 三郎</td><td>ソラ</td><td>柴</td>
+            <td>爪切り・肛門腺</td><td>看護C</td><td><span class="pill wait">待機</span></td></tr>
+      </tbody>
+    </table>
+    <div class="note">
+      <b>ここでAIに検証させたこと：</b>「受付済みの動物が、担当・目的・状況のいずれかを欠いたまま次の画面へ進めないこと」。
+      状況の値は<b>取りうる種類を先に列挙</b>し、その集合の外の値が入らないことを条件にしました。
+    </div>
+  </section>
+
+  <!-- 2. カルテ -->
+  <section class="screen" id="s2">
+    <div class="vitals">
+      <div class="vital"><div class="k">体温</div><div class="v">38.6<small> ℃</small></div></div>
+      <div class="vital"><div class="k">体重</div><div class="v">4.20<small> kg</small></div></div>
+      <div class="vital"><div class="k">心拍</div><div class="v">128<small> /分</small></div></div>
+      <div class="vital"><div class="k">呼吸</div><div class="v">24<small> /分</small></div></div>
+    </div>
+    <table>
+      <thead><tr><th>日付</th><th>所見</th><th>処置・投薬</th><th>担当</th></tr></thead>
+      <tbody>
+        <tr><td>2026-09-04</td>
+            <td>背部に軽度の発赤。掻痒あり。前回より範囲は縮小。</td>
+            <td>外用薬の継続。内服は本日分から半量へ。</td><td>獣医A</td></tr>
+        <tr><td>2026-08-21</td>
+            <td>背部から腰部にかけて発赤・脱毛。掻痒強い。</td>
+            <td>外用薬の処方。内服開始。2週間後に再診。</td><td>獣医A</td></tr>
+      </tbody>
+    </table>
+    <div class="note">
+      <b>ここでAIに検証させたこと：</b>「バイタルの各値が、動物ごとに実際の記録から引かれていること」。
+      <b>この検証で実際に不具合が見つかりました</b>（下の①）。
+    </div>
+  </section>
+
+  <!-- 3. 会計 -->
+  <section class="screen" id="s3">
+    <table>
+      <thead><tr><th>区分</th><th>項目</th><th class="num">単価</th><th class="num">数量</th><th class="num">金額</th></tr></thead>
+      <tbody>
+        <tr><td>診察</td><td>再診料</td><td class="num">1,100</td><td class="num">1</td><td class="num">1,100</td></tr>
+        <tr><td>処置</td><td>皮膚処置</td><td class="num">2,200</td><td class="num">1</td><td class="num">2,200</td></tr>
+        <tr><td>薬剤</td><td>外用薬（10g）</td><td class="num">1,650</td><td class="num">2</td><td class="num">3,300</td></tr>
+        <tr><td>薬剤</td><td>内服薬（14日分）</td><td class="num" style="color:var(--bad)">未設定</td><td class="num">1</td>
+            <td class="num" style="color:var(--bad)">算入せず</td></tr>
+        <tr class="total"><td colspan="4">合計（未算入 1 行あり）</td><td class="num">6,600</td></tr>
+      </tbody>
+    </table>
+    <div class="note">
+      <b>ここでAIに検証させたこと：</b>「合計額が、明細のどの行も取りこぼさずに計算されていること」。
+      <b>この検証でも不具合が見つかりました</b>（下の②）。現在は<b>未算入の行数を合計の隣に必ず出す</b>仕様にしています。
+      金額を伏せて「それらしい合計」を出すことのほうが危険だからです。
+    </div>
+  </section>
+</div>
+
+<h2>この開発で実際に検出した不具合</h2>
+
+<p>どちらも<b>「動くかどうか」を見ているだけでは見つからない</b>種類のものです。
+先に「何が満たされていれば正しいか」を定義していたから引っかかりました。</p>
+
+<div class="finding">
+  <h3>① 全患者のカルテに、同じ体温が印字されていた</h3>
+  <dl>
+    <dt>症状</dt><dd>画面では正しい体温が出ているのに、印刷したカルテは<b>どの患者も同じ値</b>だった。</dd>
+    <dt>原因</dt><dd>印刷用の処理に、写し漏れた<b>固定値</b>が残っていた。</dd>
+    <dt>なぜ既存の点検で見つからなかったか</dt>
+    <dd>印刷のチェックが<b>「用紙からはみ出していないか」しか見ていなかった</b>ため。値が正しいかは対象外だった。</dd>
+    <dt>対処</dt><dd><b>固定値が存在しないこと</b>を、全患者 × 画面／印刷の<b>252ページ</b>について自動で検証する項目を追加した。</dd>
+  </dl>
+</div>
+
+<div class="finding">
+  <h3>② 合計額が、単価未設定の行を 0 円として集計していた</h3>
+  <dl>
+    <dt>症状</dt><dd>単価が入っていない明細行が<b>0円として黙って足され</b>、合計だけが正しく見えていた。</dd>
+    <dt>なぜ危ないか</dt><dd>請求額が過少になるうえ、<b>画面上はどこも赤くならない</b>。気づく手がかりが無い。</dd>
+    <dt>対処</dt><dd>合計を伏せる（エラーにする）のではなく、<b>未算入の行数を明示する</b>仕様に是正した。
+      業務を止めずに、異常だけが見えるようにするため。</dd>
+  </dl>
+</div>
+
+<h2>設計方針</h2>
+
+<div class="grid2">
+  <div class="card">
+    <h3>要件を確定させてから実装に入る</h3>
+    <p>仕様の曖昧さは、そのまま不具合になります。</p>
+    <p>例：設計書が特定のライブラリを前提にしていたのに、本体には導入されていないと判明したことがありました。
+    <b>動作に支障は無く既存挙動も正常だった</b>ため、独断で実装せず、方針決定を依頼して記録に残しました。</p>
+  </div>
+  <div class="card">
+    <h3>金額は検算が通ることを採用条件にする</h3>
+    <p>AIが出した数値をそのまま採用しません。合計と明細が一致するか、取りこぼした行が無いかを別経路で確かめ、
+    <b>通ったものだけを採用</b>します。②はこの条件で引っかかりました。</p>
+  </div>
+</div>
+
+<footer>
+  <p>このページは公開用のデモとして作成した静的ページです。実システムのソースコードは含みません。
+  表示しているデータはすべて架空のものです。</p>
+  <p>作成: <a href="https://github.com/akiijauto">akiijauto</a>　/
+  ほかの制作物: <a href="https://www.ai-l-a-b-o.com/works/">https://www.ai-l-a-b-o.com/works/</a></p>
+</footer>
+
+</div>
+
+<script>
+  // タブ切り替えのみ。外部通信は一切行わない。
+  const tabs = document.querySelectorAll('.tabs button');
+  tabs.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      tabs.forEach(function (b) { b.setAttribute('aria-selected', String(b === btn)); });
+      document.querySelectorAll('.screen').forEach(function (s) {
+        s.dataset.active = String(s.id === btn.dataset.target);
+      });
+    });
+  });
+</script>
+</body>
+</html>
