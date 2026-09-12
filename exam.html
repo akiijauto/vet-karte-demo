@@ -98,6 +98,28 @@
   <span class="faint">尿・糞便も同じ書式で、それぞれの項目表を使って記録します。</span>
 </div>
 
+<div class="ptitle">体重・体温の推移<span class="faint">（画面だけ。印刷には出ません）</span></div>
+
+<div class="gridwrap">
+  <table class="grid">
+    <thead><tr><th>体重（kg）</th><th>体温（℃）</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><svg viewBox="0 0 320 60" width="100%" height="60" style="background:var(--paper);border:1px solid var(--rule)">
+          <polyline points="8,18 105,26 210,34 312,40" fill="none" stroke="var(--accent)" stroke-width="2"></polyline>
+        </svg></td>
+        <td><svg viewBox="0 0 320 60" width="100%" height="60" style="background:var(--paper);border:1px solid var(--rule)">
+          <polyline points="8,44 105,20 210,30 312,26" fill="none" stroke="var(--accent)" stroke-width="2"></polyline>
+        </svg></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="picker">
+  <span class="faint">紙カルテに無い要素なので、印刷（カルテの用紙）には出しません。折れ線は外部の描画ライブラリを使わず組んでいます。</span>
+</div>
+
 <div class="ptitle">画像検査の実施記録</div>
 
 <div class="gridwrap">
@@ -167,7 +189,11 @@ ALB の低下は軽度。食欲・体重に変化がないため、まずは再�
   並び順が違うだけで読み合わせに時間がかかります。見やすさより、並べて読めることを取りました。<br>
   <b>画像そのものはカルテに置かず、保管先の識別子だけを持ちます。</b>
   CT は1検査で1,000〜3,000枚になり、カルテに抱えるとカルテを開くたびに待たされることになるためです。<br>
-  この画面から操作しない機能はグレーで残しています。
+  この画面から操作しない機能はグレーで残しています。<br>
+  <b>体重・体温の推移は、画面だけに置いています。</b>紙カルテに無い要素なので、
+  印刷（紙カルテと同じ書式のカルテ用紙）には一切出しません。
+  「印刷できないカルテがあってはならない」という前提を守るため、
+  印刷書式を1文字も変えずに済む置き場所を選びました。
 </div>
 
 </body>
